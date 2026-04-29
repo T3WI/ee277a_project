@@ -74,6 +74,20 @@ void draw_cannon(int x, int y){
 	VGA_plot_pixel(x, y-2, WHITE);
 }
 
+void draw_cannonball(int x, int y){
+	VGA_plot_pixel(x, y, GREEN);
+	VGA_plot_pixel(x, y+1, GREEN);
+	VGA_plot_pixel(x, y-1, GREEN);
+	VGA_plot_pixel(x+1, y, GREEN);
+	VGA_plot_pixel(x-1, y, GREEN);
+}
+
+void move_cannonball(int x, int y){
+	draw_cannonball(x, y);
+	VGA_plot_pixel(x-1, y+1, BLACK);
+	VGA_plot_pixel(x, y+2, BLACK);
+	VGA_plot_pixel(x+1, y+1, BLACK);
+}
 //---------------------------------------------
 // Clean up the screen
 //---------------------------------------------

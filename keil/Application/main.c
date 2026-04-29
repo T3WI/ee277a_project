@@ -21,7 +21,7 @@
 #define boundary_thick 1
 
 //Global variables
-static int i;
+static int i, j, k;
 static char key;
 static int score;
 static int pause;
@@ -48,13 +48,13 @@ struct Cannon{
 	int x;
 	int y;
 }cannon[8];
-/*
+
 struct Cannonball{
 	int x;
 	int y;
 	int fire;
 }cannonball[8];
-*/
+
 
 //---------------------------------------------
 // Game
@@ -194,42 +194,42 @@ int GameOver(void){
 //---------------------------------------------
 void GPIO7_ISR()
 {
-	// cannonball[7].fire = 1;
+	cannonball[7].fire = 1;
 	printf("ISR7 WORK\n");
 }
 void GPIO6_ISR()
 {	
-	// cannonball[6].fire = 1;	
+	cannonball[6].fire = 1;	
 	printf("ISR6 WORK\n");
 }
 void GPIO5_ISR()
 {
-	// cannonball[5].fire = 1;	
+	cannonball[5].fire = 1;	
 	printf("ISR5 WORK\n");
 }
 void GPIO4_ISR()
 {
-	// cannonball[4].fire = 1;	
+	cannonball[4].fire = 1;	
 	printf("ISR4 WORK\n");
 }
 void GPIO3_ISR()
 {
-	// cannonball[3].fire = 1;	
+	cannonball[3].fire = 1;	
 	printf("ISR3 WORK\n");
 }
 void GPIO2_ISR()
 {
-	// cannonball[2].fire = 1;	
+	cannonball[2].fire = 1;	
 	printf("ISR2 WORK\n");
 }
 void GPIO1_ISR()
 {
-	// cannonball[1].fire = 1;
+	cannonball[1].fire = 1;
 	printf("ISR1 WORK\n");
 }
 void GPIO0_ISR()
 {
-	// cannonball[0].fire = 1;
+	cannonball[0].fire = 1;
 	printf("ISR0 WORK\n");
 }
 
@@ -362,14 +362,20 @@ void Timer_ISR(void)
 				rectangle(snake.x[snake.node-1],snake.y[snake.node-1],snake.x[snake.node-1]+2,snake.y[snake.node-1]+2,BLACK);
 
 		}
-	// Cannonball fire
-	/*
-	for(i = 0; i < 8; i++){
-		if(cannonball[i].fire == 1){
-			rectangle(cannon[i].x, cannon[i].y, cannon[i].x - 3, cannon[i].y - 3, WHITE);
+	// Cannonball fire - try using j if this works
+	for(j = 0; j < 8; j++){
+		if(cannonball[j].fire == 1){
+			cannonball[j].x = cannon[j].x;
+			cannonball[j].y = cannon[j].y - 5;
+			draw_cannonball(cannonball[j].x, cannonball[j].y);
+			for(; cannonball[j].y > top_boundary; cannonball[j].y--){
+				move_cannonball(cannonball[j].x, cannonball[j].y);
+			}
+			cannonball[j].fire = 0;
 		}
 	}
-	*/
+		
+	
 	// Mark that snake has moved
 	snake_has_moved=1;
 
