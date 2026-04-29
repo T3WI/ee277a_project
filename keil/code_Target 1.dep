@@ -1,7 +1,7 @@
 Dependencies for Project 'code', Target 'Target 1': (DO NOT MODIFY !)
 CompilerVersion: 5060960::V5.06 update 7 (build 960)::.\Arm_Compiler_5.06u7
 F (.\Device\cm0dsasm.s)(0x69F1346E)(--cpu Cortex-M0 --li --pd "__EVAL SETA 1" -g --apcs=interwork -I.\RTE\_Target_1-IC:\Users\kgreg\AppData\Local\Arm\Packs\ARM\CMSIS\6.3.0\CMSIS\Core\Include-IC:\Users\kgreg\AppData\Local\Arm\Packs\ARM\Cortex_DFP\1.1.0\Device\ARMCM0\Include-IC:\Users\kgreg\AppData\Local\Arm\Packs\ARM\Cortex_DFP\1.1.0\Device\ARM\ARMCM0\Include--pd "__UVISION_VERSION SETA 543" --pd "ARMCM0 SETA 1" --pd "_RTE_ SETA 1"--list .\cm0dsasm.lst --xref -o .\cm0dsasm.o --depend .\cm0dsasm.d)
-F (.\Device\edk_api.c)(0x69F14AE4)(-c --cpu Cortex-M0 -D__EVAL --li -g -O0 --apcs=interwork -I .\Application -I .\Core -I .\Device-I.\RTE\_Target_1-IC:\Users\kgreg\AppData\Local\Arm\Packs\ARM\CMSIS\6.3.0\CMSIS\Core\Include-IC:\Users\kgreg\AppData\Local\Arm\Packs\ARM\Cortex_DFP\1.1.0\Device\ARMCM0\Include-IC:\Users\kgreg\AppData\Local\Arm\Packs\ARM\Cortex_DFP\1.1.0\Device\ARM\ARMCM0\Include-D__UVISION_VERSION="543" -DARMCM0 -D_RTE_-o .\edk_api.o --omf_browse .\edk_api.crf --depend .\edk_api.d)
+F (.\Device\edk_api.c)(0x69F153C6)(-c --cpu Cortex-M0 -D__EVAL --li -g -O0 --apcs=interwork -I .\Application -I .\Core -I .\Device-I.\RTE\_Target_1-IC:\Users\kgreg\AppData\Local\Arm\Packs\ARM\CMSIS\6.3.0\CMSIS\Core\Include-IC:\Users\kgreg\AppData\Local\Arm\Packs\ARM\Cortex_DFP\1.1.0\Device\ARMCM0\Include-IC:\Users\kgreg\AppData\Local\Arm\Packs\ARM\Cortex_DFP\1.1.0\Device\ARM\ARMCM0\Include-D__UVISION_VERSION="543" -DARMCM0 -D_RTE_-o .\edk_api.o --omf_browse .\edk_api.crf --depend .\edk_api.d)
 I (Device\EDK_CM0.h)(0x69F13528)
 I (C:\Users\kgreg\AppData\Local\Keil_v5\ARM\Arm_Compiler_5.06u7\include\string.h)(0x5E8F1DC2)
 I (Device\edk_driver.h)(0x69F11B65)
@@ -34,7 +34,7 @@ I (.\Core\core_cm0.h)(0x69F11B65)
 I (.\Core\core_cmInstr.h)(0x69F11B65)
 I (.\Core\core_cmFunc.h)(0x69F11B65)
 I (Device\edk_api.h)(0x69F12776)
-F (.\Application\main.c)(0x69F152C9)(-c --cpu Cortex-M0 -D__EVAL --li -g -O0 --apcs=interwork -I .\Application -I .\Core -I .\Device-I.\RTE\_Target_1-IC:\Users\kgreg\AppData\Local\Arm\Packs\ARM\CMSIS\6.3.0\CMSIS\Core\Include-IC:\Users\kgreg\AppData\Local\Arm\Packs\ARM\Cortex_DFP\1.1.0\Device\ARMCM0\Include-IC:\Users\kgreg\AppData\Local\Arm\Packs\ARM\Cortex_DFP\1.1.0\Device\ARM\ARMCM0\Include-D__UVISION_VERSION="543" -DARMCM0 -D_RTE_-o .\main.o --omf_browse .\main.crf --depend .\main.d)
+F (.\Application\main.c)(0x69F159CF)(-c --cpu Cortex-M0 -D__EVAL --li -g -O0 --apcs=interwork -I .\Application -I .\Core -I .\Device-I.\RTE\_Target_1-IC:\Users\kgreg\AppData\Local\Arm\Packs\ARM\CMSIS\6.3.0\CMSIS\Core\Include-IC:\Users\kgreg\AppData\Local\Arm\Packs\ARM\Cortex_DFP\1.1.0\Device\ARMCM0\Include-IC:\Users\kgreg\AppData\Local\Arm\Packs\ARM\Cortex_DFP\1.1.0\Device\ARM\ARMCM0\Include-D__UVISION_VERSION="543" -DARMCM0 -D_RTE_-o .\main.o --omf_browse .\main.crf --depend .\main.d)
 I (.\Device\EDK_CM0.h)(0x69F13528)
 I (.\Core\core_cm0.h)(0x69F11B65)
 I (C:\Users\kgreg\AppData\Local\Keil_v5\ARM\Arm_Compiler_5.06u7\include\stdint.h)(0x5E8F1DC2)

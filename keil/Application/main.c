@@ -48,12 +48,13 @@ struct Cannon{
 	int x;
 	int y;
 }cannon[8];
-
+/*
 struct Cannonball{
 	int x;
 	int y;
+	int fire;
 }cannonball[8];
-
+*/
 
 //---------------------------------------------
 // Game
@@ -136,6 +137,15 @@ void Game_Close(void){
 	printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
 	NVIC_DisableIRQ(Timer_IRQn);			
 	NVIC_DisableIRQ(UART_IRQn);	
+	NVIC_DisableIRQ(GPIO7_IRQn);
+	NVIC_DisableIRQ(GPIO6_IRQn);
+	NVIC_DisableIRQ(GPIO5_IRQn);
+	NVIC_DisableIRQ(GPIO4_IRQn);
+	NVIC_DisableIRQ(GPIO3_IRQn);
+	NVIC_DisableIRQ(GPIO2_IRQn);
+	NVIC_DisableIRQ(GPIO1_IRQn);
+	NVIC_DisableIRQ(GPIO0_IRQn);	
+
 }
 
 //Generate a random target using system tick as seed
@@ -184,35 +194,43 @@ int GameOver(void){
 //---------------------------------------------
 void GPIO7_ISR()
 {
-	// printf("ISR7 WORK\n");
+	// cannonball[7].fire = 1;
+	printf("ISR7 WORK\n");
 }
 void GPIO6_ISR()
-{
-	// printf("ISR6 WORK\n");
+{	
+	// cannonball[6].fire = 1;	
+	printf("ISR6 WORK\n");
 }
 void GPIO5_ISR()
 {
-	// printf("ISR5 WORK\n");
+	// cannonball[5].fire = 1;	
+	printf("ISR5 WORK\n");
 }
 void GPIO4_ISR()
 {
-	// printf("ISR4 WORK\n");
+	// cannonball[4].fire = 1;	
+	printf("ISR4 WORK\n");
 }
 void GPIO3_ISR()
 {
-	// printf("ISR3 WORK\n");
+	// cannonball[3].fire = 1;	
+	printf("ISR3 WORK\n");
 }
 void GPIO2_ISR()
 {
-	// printf("ISR2 WORK\n");
+	// cannonball[2].fire = 1;	
+	printf("ISR2 WORK\n");
 }
 void GPIO1_ISR()
 {
-	// printf("ISR1 WORK\n");
+	// cannonball[1].fire = 1;
+	printf("ISR1 WORK\n");
 }
 void GPIO0_ISR()
 {
-	// printf("ISR0 WORK\n");
+	// cannonball[0].fire = 1;
+	printf("ISR0 WORK\n");
 }
 
 
@@ -344,7 +362,14 @@ void Timer_ISR(void)
 				rectangle(snake.x[snake.node-1],snake.y[snake.node-1],snake.x[snake.node-1]+2,snake.y[snake.node-1]+2,BLACK);
 
 		}
-		
+	// Cannonball fire
+	/*
+	for(i = 0; i < 8; i++){
+		if(cannonball[i].fire == 1){
+			rectangle(cannon[i].x, cannon[i].y, cannon[i].x - 3, cannon[i].y - 3, WHITE);
+		}
+	}
+	*/
 	// Mark that snake has moved
 	snake_has_moved=1;
 
