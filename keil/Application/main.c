@@ -85,7 +85,11 @@ void Game_Init(void)
 		draw_cannon(cannon[i].x, cannon[i].y);
 	}
 	for(i = 0; i < 8; i++){
+		cannonball[i].x = 0;
+		cannonball[i].y = 0;
+		cannonball[i].fire = 0;
 		cannonball[i].state = INITIAL;
+
 	}
 	//Initialise data
 	
@@ -180,6 +184,9 @@ int GameOver(void){
 	NVIC_DisableIRQ(GPIO1_IRQn);
 	NVIC_DisableIRQ(GPIO0_IRQn);	
 	for(i=0; i < 8; i++){
+		cannonball[i].x = 0;
+		cannonball[i].y = 0;
+		cannonball[i].fire = 0;
 		cannonball[i].state = INITIAL;
 	}
 
@@ -400,6 +407,31 @@ void Timer_ISR(void)
 				}
 			}
 
+			// Detect if snake hits cannonaball
+			
+			for(i=3;i<snake.node;i++){
+				for(j=0; j<8; j++){
+					if(	(snake.x[i]==cannonball[j].x+1&&snake.y[i]==cannonball[j].y) ||
+						(snake.x[i]==cannonball[j].x-1&&snake.y[i]==cannonball[j].y) ||
+						(snake.x[i]==cannonball[j].x&&snake.y[i]==cannonball[j].y+1) ||
+						(snake.x[i]==cannonball[j].x&&snake.y[i]==cannonball[j].y-1)){
+						printf("Conditions:\n");
+						printf("%d\n", snake.x[i]==cannonball[j].x&&snake.y[i]==cannonball[j].y);
+						printf("%d\n", snake.x[i]==cannonball[j].x+1&&snake.y[i]==cannonball[j].y);
+						printf("%d\n", snake.x[i]==cannonball[j].x-1&&snake.y[i]==cannonball[j].y );
+						printf("%d\n", snake.x[i]==cannonball[j].x&&snake.y[i]==cannonball[j].y+1);
+						printf("%d\n", snake.x[i]==cannonball[j].x&&snake.y[i]==cannonball[j].y-1);
+						printf("Variables:\n");
+						printf("Cannonball.x: %d, Cannonball.y: %d\n", cannonball[j].x, cannonball[j].y);
+						if (GameOver()==0)
+							Game_Close();
+						else
+							Game_Init();
+					}
+				}
+				
+			}	
+			
 
 		}
 	// Cannonball fire
