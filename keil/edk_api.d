@@ -1,9 +1,9 @@
 .\edk_api.o: Device\edk_api.c
 .\edk_api.o: Device\EDK_CM0.h
-.\edk_api.o: C:\Users\bobph\AppData\Local\Keil_v5\ARM\Arm_Compiler_5.06u7\Bin\..\include\string.h
+.\edk_api.o: C:\Users\kgreg\AppData\Local\Keil_v5\ARM\Arm_Compiler_5.06u7\Bin\..\include\string.h
 .\edk_api.o: Device\edk_driver.h
 .\edk_api.o: .\Core\core_cm0.h
-.\edk_api.o: C:\Users\bobph\AppData\Local\Keil_v5\ARM\Arm_Compiler_5.06u7\Bin\..\include\stdint.h
+.\edk_api.o: C:\Users\kgreg\AppData\Local\Keil_v5\ARM\Arm_Compiler_5.06u7\Bin\..\include\stdint.h
 .\edk_api.o: .\Core\core_cmInstr.h
 .\edk_api.o: .\Core\core_cmFunc.h
 .\edk_api.o: Device\edk_api.h

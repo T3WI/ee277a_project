@@ -52,9 +52,8 @@ module AHBGPIO(
   output wire [31:0] HRDATA,
   output wire [15:0] GPIOOUT,
 
-  output wire gpio_irq
-  
-  
+  output wire [7:0] gpio_irq
+
   );
   
   localparam [7:0] gpio_data_addr = 8'h00;
@@ -121,8 +120,8 @@ module AHBGPIO(
   end
 
   // IRQ Generated if the switch turns on or off.
-  wire gpio_irq_next;
-  reg gpio_irq_reg;
+  wire [7:0] gpio_irq_next;
+  reg [7:0] gpio_irq_reg;
   always @(posedge HCLK, negedge HRESETn) begin 
     if(!HRESETn) begin 
       gpio_irq_reg <= 0;
@@ -134,22 +133,22 @@ module AHBGPIO(
   assign gpio_irq = gpio_irq_reg;
 
   // edge detector
-  reg gpioin_curr, gpioin_next;
-  wire edged;
+  reg [7:0] gpioin_curr, gpioin_last;
+  wire [7:0] edged;
   always @(posedge HCLK, negedge HRESETn) begin 
     if(!HRESETn) begin 
       gpioin_curr <= 0;
-      gpioin_next <= 0;
+      gpioin_last <= 0;
     end
     else begin 
-      gpioin_curr <= GPIOIN[15];
-      gpioin_next <= gpioin_curr;
+      gpioin_curr <= GPIOIN[7:0];
+      gpioin_last <= gpioin_curr;
     end
   end
 
-  assign edged = (gpioin_curr&~gpioin_next) || (~gpioin_curr&gpioin_next);
+  assign edged = (gpioin_curr&~gpioin_last);
 
-  assign gpio_irq_next = edged ? 1 : 0;
+  assign gpio_irq_next = edged;
          
   assign HRDATA[15:0] = gpio_datain;  
   assign GPIOOUT = gpio_dataout;

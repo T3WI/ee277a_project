@@ -44,6 +44,16 @@ struct Snake{
 	int direction;
 	}snake;
 
+struct Cannon{
+	int x;
+	int y;
+}cannon[8];
+
+struct Cannonball{
+	int x;
+	int y;
+}cannonball[8];
+
 
 //---------------------------------------------
 // Game
@@ -53,11 +63,20 @@ struct Snake{
 void Game_Init(void)
 {	
 	//Draw a game region
+	int i;
 	clear_screen();
 	rectangle(left_boundary,top_boundary,right_boundary,top_boundary+boundary_thick,BLUE);
 	rectangle(left_boundary,top_boundary,left_boundary+boundary_thick,bottom_boundary,BLUE);
 	rectangle(left_boundary,bottom_boundary,right_boundary,bottom_boundary+boundary_thick,BLUE);
 	rectangle(right_boundary,top_boundary,right_boundary+boundary_thick,bottom_boundary+boundary_thick,BLUE);	
+
+	
+	for(i = 0; i < 8; i++){
+		cannon[i].x = left_boundary+2*(5*(i+1));
+		cannon[i].y = bottom_boundary - 1;
+		draw_cannon(cannon[i].x, cannon[i].y);
+	}
+	
 
 	//Initialise data
 	
@@ -77,13 +96,14 @@ void Game_Init(void)
 	
 	//Print instructions
 	printf("\n\n-------- EDK Demo ---------");
-	printf("\n------- Snake Game --------");
+	printf("\n---- UART Guy Survival Game -----");
   printf("\nCentre btn ..... hard reset");
   printf("\nKeyboard r ..... soft reset");
-  printf("\nKeyboard w ........ move up");
-  printf("\nKeyboard s ...... move down");
-  printf("\nKeyboard a ...... move left");
-  printf("\nKeyboard d ..... move right");
+  printf("\nKeyboard w ....... move UART guy up");
+  printf("\nKeyboard s ...... move UART guy down");
+  printf("\nKeyboard a ...... move UART guy left");
+  printf("\nKeyboard d ...... move UART guy right");
+	printf("\nShoot cannons using 8 rightmost FPGA switches");
   printf("\nKeyboard space ...... pause");
   printf("\n---------------------------");	
 	printf("\nTo ran the game, make sure:");
@@ -98,6 +118,14 @@ void Game_Init(void)
 	
 	NVIC_EnableIRQ(Timer_IRQn);			//start timing
 	NVIC_EnableIRQ(UART_IRQn);	
+	NVIC_EnableIRQ(GPIO7_IRQn);
+	NVIC_EnableIRQ(GPIO6_IRQn);
+	NVIC_EnableIRQ(GPIO5_IRQn);
+	NVIC_EnableIRQ(GPIO4_IRQn);
+	NVIC_EnableIRQ(GPIO3_IRQn);
+	NVIC_EnableIRQ(GPIO2_IRQn);
+	NVIC_EnableIRQ(GPIO1_IRQn);
+	NVIC_EnableIRQ(GPIO0_IRQn);
 }
 
 
@@ -125,6 +153,15 @@ int GameOver(void){
 	
 	NVIC_DisableIRQ(UART_IRQn);
 	NVIC_DisableIRQ(Timer_IRQn);
+	NVIC_DisableIRQ(GPIO7_IRQn);
+	NVIC_DisableIRQ(GPIO6_IRQn);
+	NVIC_DisableIRQ(GPIO5_IRQn);
+	NVIC_DisableIRQ(GPIO4_IRQn);
+	NVIC_DisableIRQ(GPIO3_IRQn);
+	NVIC_DisableIRQ(GPIO2_IRQn);
+	NVIC_DisableIRQ(GPIO1_IRQn);
+	NVIC_DisableIRQ(GPIO0_IRQn);	
+
 	printf("\nGame over\n");
 	printf("\nPress 'q' to quit");
 	printf("\nPress 'r' to replay");
@@ -142,10 +179,41 @@ int GameOver(void){
 	}
 		
 }
-
-
-
-
+//---------------------------------------------
+// GPIO ISRs -- used to shoot cannons
+//---------------------------------------------
+void GPIO7_ISR()
+{
+	// printf("ISR7 WORK\n");
+}
+void GPIO6_ISR()
+{
+	// printf("ISR6 WORK\n");
+}
+void GPIO5_ISR()
+{
+	// printf("ISR5 WORK\n");
+}
+void GPIO4_ISR()
+{
+	// printf("ISR4 WORK\n");
+}
+void GPIO3_ISR()
+{
+	// printf("ISR3 WORK\n");
+}
+void GPIO2_ISR()
+{
+	// printf("ISR2 WORK\n");
+}
+void GPIO1_ISR()
+{
+	// printf("ISR1 WORK\n");
+}
+void GPIO0_ISR()
+{
+	// printf("ISR0 WORK\n");
+}
 
 
 //---------------------------------------------

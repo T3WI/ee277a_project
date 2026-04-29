@@ -41,15 +41,15 @@ __Vectors		    	DCD		0x00003FFC
 						        				
         				DCD		Timer_Handler
         				DCD		UART_Handler
-        				DCD		0
-        				DCD		0
-        				DCD		0
-        				DCD		0
-        				DCD		0
-        				DCD		0
-        				DCD		0
-        				DCD		0
-        				DCD		0
+        				DCD		GPIO7_Handler	
+        				DCD		GPIO6_Handler	
+        				DCD		GPIO5_Handler	
+        				DCD		GPIO4_Handler	
+        				DCD		GPIO3_Handler	
+        				DCD		GPIO2_Handler	
+        				DCD		GPIO1_Handler	
+        				DCD		GPIO0_Handler	
+        				DCD		0	
         				DCD		0
         				DCD		0
         				DCD		0
@@ -82,6 +82,69 @@ UART_Handler    PROC
                 POP     {R0,R1,R2,PC}
                 ENDP
 
+GPIO7_Handler   PROC
+                EXPORT GPIO7_Handler
+				IMPORT GPIO7_ISR
+                PUSH    {R0,R1,R2,LR}
+				BL GPIO7_ISR
+                POP     {R0,R1,R2,PC}
+                ENDP
+
+GPIO6_Handler   PROC
+                EXPORT GPIO6_Handler
+				IMPORT GPIO6_ISR
+                PUSH    {R0,R1,R2,LR}
+				BL GPIO6_ISR
+                POP     {R0,R1,R2,PC}
+                ENDP
+
+GPIO5_Handler   PROC
+                EXPORT GPIO5_Handler
+				IMPORT GPIO5_ISR
+                PUSH    {R0,R1,R2,LR}
+				BL GPIO5_ISR
+                POP     {R0,R1,R2,PC}
+                ENDP
+
+GPIO4_Handler   PROC
+                EXPORT GPIO4_Handler
+				IMPORT GPIO4_ISR
+                PUSH    {R0,R1,R2,LR}
+				BL GPIO4_ISR
+                POP     {R0,R1,R2,PC}
+                ENDP
+
+GPIO3_Handler   PROC
+                EXPORT GPIO3_Handler
+				IMPORT GPIO3_ISR
+                PUSH    {R0,R1,R2,LR}
+				BL GPIO3_ISR
+                POP     {R0,R1,R2,PC}
+                ENDP
+
+GPIO2_Handler   PROC
+                EXPORT GPIO2_Handler
+				IMPORT GPIO2_ISR
+                PUSH    {R0,R1,R2,LR}
+				BL GPIO2_ISR
+                POP     {R0,R1,R2,PC}
+                ENDP
+
+GPIO1_Handler   PROC
+                EXPORT GPIO1_Handler
+				IMPORT GPIO1_ISR
+                PUSH    {R0,R1,R2,LR}
+				BL GPIO1_ISR
+                POP     {R0,R1,R2,PC}
+                ENDP
+
+GPIO0_Handler   PROC
+                EXPORT GPIO0_Handler
+				IMPORT GPIO0_ISR
+                PUSH    {R0,R1,R2,LR}
+				BL GPIO0_ISR
+                POP     {R0,R1,R2,PC}
+                ENDP
 				ALIGN 		4					 ; Align to a word boundary
 
 ; User Initial Stack & Heap

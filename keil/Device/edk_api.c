@@ -17,6 +17,14 @@
 void SoC_init(void){
 	NVIC_SetPriority (Timer_IRQn, 0x00);		//Set timer a higher priority
 	NVIC_SetPriority (UART_IRQn, 0x40);			//Set UART a lower priority
+	NVIC_SetPriority (GPIO7_IRQn, 0x80);	
+	NVIC_SetPriority (GPIO6_IRQn, 0x80);
+	NVIC_SetPriority (GPIO5_IRQn, 0x80);	
+	NVIC_SetPriority (GPIO4_IRQn, 0x80);
+	NVIC_SetPriority (GPIO3_IRQn, 0x80);	
+	NVIC_SetPriority (GPIO2_IRQn, 0x80);
+	NVIC_SetPriority (GPIO1_IRQn, 0x80);	
+	NVIC_SetPriority (GPIO0_IRQn, 0x80);
 	seven_seg_write(0,0,0,0);								//Clean 7-segment display
 	clear_screen();	
 	SCB -> SCR = 1<1;												//Enable sleep-on-exit bit
@@ -56,6 +64,14 @@ void rectangle(int x1,int y1,int x2,int y2, int color){
 	for (i=x1;i<x2;i++)
 		for (j=y1; j<y2;j++)
 			VGA_plot_pixel (i,j,color);
+}
+
+void draw_cannon(int x, int y){
+	VGA_plot_pixel(x, y, WHITE);
+	VGA_plot_pixel(x-1, y, WHITE);
+	VGA_plot_pixel(x+1, y, WHITE);
+	VGA_plot_pixel(x, y-1, WHITE);
+	VGA_plot_pixel(x, y-2, WHITE);
 }
 
 //---------------------------------------------
