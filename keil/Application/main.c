@@ -49,10 +49,17 @@ struct Cannon{
 	int y;
 }cannon[8];
 
+typedef enum BallState{
+	WAIT = 0,
+	INITIAL = 1,
+	FIRING = 2
+}BallStateType;
+
 struct Cannonball{
 	int x;
 	int y;
 	int fire;
+	BallStateType state;	
 }cannonball[8];
 
 
@@ -77,8 +84,9 @@ void Game_Init(void)
 		cannon[i].y = bottom_boundary - 1;
 		draw_cannon(cannon[i].x, cannon[i].y);
 	}
-	
-
+	for(i = 0; i < 8; i++){
+		cannonball[i].state = INITIAL;
+	}
 	//Initialise data
 	
 	score=0;
@@ -171,6 +179,9 @@ int GameOver(void){
 	NVIC_DisableIRQ(GPIO2_IRQn);
 	NVIC_DisableIRQ(GPIO1_IRQn);
 	NVIC_DisableIRQ(GPIO0_IRQn);	
+	for(i=0; i < 8; i++){
+		cannonball[i].state = INITIAL;
+	}
 
 	printf("\nGame over\n");
 	printf("\nPress 'q' to quit");
@@ -361,20 +372,38 @@ void Timer_ISR(void)
 				rectangle(snake.x[i],snake.y[i],snake.x[i]+2,snake.y[i]+2,RED);
 				rectangle(snake.x[snake.node-1],snake.y[snake.node-1],snake.x[snake.node-1]+2,snake.y[snake.node-1]+2,BLACK);
 
-		}
-	// Cannonball fire - try using j if this works
-	for(j = 0; j < 8; j++){
-		if(cannonball[j].fire == 1){
-			cannonball[j].x = cannon[j].x;
-			cannonball[j].y = cannon[j].y - 5;
-			draw_cannonball(cannonball[j].x, cannonball[j].y);
-			for(; cannonball[j].y > top_boundary; cannonball[j].y--){
-				move_cannonball(cannonball[j].x, cannonball[j].y);
+			// Fire cannonball
+			for(j = 0; j < 8; j++){
+				if(cannonball[j].fire == 1){
+					if(cannonball[j].state == FIRING){
+						if(cannonball[j].y > top_boundary){
+							move_cannonball(cannonball[j].x, cannonball[j].y, GREEN);
+							cannonball[j].y--;
+						}	
+						else{
+							cannonball[j].fire = 0;
+							draw_cannonball(cannonball[j].x, cannonball[j].y, BLACK);
+							draw_cannonball(cannonball[j].x, cannonball[j].y+1, BLACK);
+							VGA_plot_pixel(cannonball[j].x, cannonball[j].y, BLUE);
+							VGA_plot_pixel(cannonball[j].x-1, cannonball[j].y, BLUE);
+							VGA_plot_pixel(cannonball[j].x+1, cannonball[j].y, BLUE);
+							cannonball[j].state = INITIAL;
+						}
+					}
+					else{
+						cannonball[j].x = cannon[j].x;
+						cannonball[j].y = cannon[j].y - 5;
+						draw_cannonball(cannonball[j].x, cannonball[j].y, GREEN);
+						cannonball[j].state = FIRING;
+					}
+					
+				}
 			}
-			cannonball[j].fire = 0;
+
+
 		}
-	}
-		
+	// Cannonball fire
+			
 	
 	// Mark that snake has moved
 	snake_has_moved=1;

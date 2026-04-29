@@ -117,7 +117,7 @@ module AHBLITE_SYS(
     	wire          uart_irq;
         wire          timer_irq;
         wire [7:0]    gpio_irq;
-        assign        irq = {22'b0, gpio_irq[0], gpio_irq[1], gpio_irq[2], gpio_irq[3], gpio_irq[4], gpio_irq[5], gpio_irq[6], gpio_irq[7], uart_irq, timer_irq};
+        assign        irq = {22'b0, gpio_irq[7:0], uart_irq, timer_irq};
         // assign        LED = gpio_irq | LED; // gpio test
     
 	  // Clock divider, divide the frequency by two, hence less time constraint 

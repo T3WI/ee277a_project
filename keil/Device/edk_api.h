@@ -43,8 +43,8 @@ void SoC_init(void);					//SoC initialization
 
 void Display_Int_Times(void);				//Display the number of interrupts on the 7-segment display
 void draw_cannon(int x, int y);
-void draw_cannonball(int x, int y);
-void move_cannonball(int x, int y);
+void draw_cannonball(int x, int y, int color);
+void move_cannonball(int x, int y, int color);
 void rectangle(int x1,int y1,int x2,int y2, int color);		// Draw a rectangle on the screen
 
 void clear_screen(void);			// Clean up the screen
