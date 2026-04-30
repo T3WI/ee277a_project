@@ -19,9 +19,10 @@
 #define top_boundary 5
 #define bottom_boundary 116
 #define boundary_thick 1
+#define CANNON_OFFSET 2			// used for hit detection
 
 //Global variables
-static int i, j, k;
+static int i, j;
 static char key;
 static int score;
 static int pause;
@@ -411,18 +412,23 @@ void Timer_ISR(void)
 			
 			for(i=3;i<snake.node;i++){
 				for(j=0; j<8; j++){
-					if(	(snake.x[i]==cannonball[j].x+1&&snake.y[i]==cannonball[j].y) ||
-						(snake.x[i]==cannonball[j].x-1&&snake.y[i]==cannonball[j].y) ||
-						(snake.x[i]==cannonball[j].x&&snake.y[i]==cannonball[j].y+1) ||
-						(snake.x[i]==cannonball[j].x&&snake.y[i]==cannonball[j].y-1)){
+					if(	(cannonball[j].fire == 1) &&
+							(
+							(snake.x[i]==cannonball[j].x&&snake.y[i]==(cannonball[j].y + CANNON_OFFSET))	 ||
+							(snake.x[i]==cannonball[j].x+1&&snake.y[i]==(cannonball[j].y + CANNON_OFFSET)) ||
+							(snake.x[i]==cannonball[j].x-1&&snake.y[i]==(cannonball[j].y + CANNON_OFFSET)) ||
+							(snake.x[i]==cannonball[j].x&&snake.y[i]==(cannonball[j].y+1 + CANNON_OFFSET)) ||
+							(snake.x[i]==cannonball[j].x&&snake.y[i]==(cannonball[j].y-1 + CANNON_OFFSET))
+							)
+					){
 						printf("Conditions:\n");
-						printf("%d\n", snake.x[i]==cannonball[j].x&&snake.y[i]==cannonball[j].y);
-						printf("%d\n", snake.x[i]==cannonball[j].x+1&&snake.y[i]==cannonball[j].y);
-						printf("%d\n", snake.x[i]==cannonball[j].x-1&&snake.y[i]==cannonball[j].y );
-						printf("%d\n", snake.x[i]==cannonball[j].x&&snake.y[i]==cannonball[j].y+1);
-						printf("%d\n", snake.x[i]==cannonball[j].x&&snake.y[i]==cannonball[j].y-1);
+						printf("%d\n", (snake.x[i]==cannonball[j].x&&snake.y[i]==(cannonball[j].y + CANNON_OFFSET) ));
+						printf("%d\n", (snake.x[i]==cannonball[j].x+1&&snake.y[i]==(cannonball[j].y + CANNON_OFFSET) ));
+						printf("%d\n", (snake.x[i]==cannonball[j].x-1&&snake.y[i]==(cannonball[j].y + CANNON_OFFSET)));
+						printf("%d\n", (snake.x[i]==cannonball[j].x&&snake.y[i]==(cannonball[j].y+1 + CANNON_OFFSET)));
+						printf("%d\n", (snake.x[i]==cannonball[j].x&&snake.y[i]==(cannonball[j].y-1 + CANNON_OFFSET)));
 						printf("Variables:\n");
-						printf("Cannonball.x: %d, Cannonball.y: %d\n", cannonball[j].x, cannonball[j].y);
+						printf("Cannonball.x: %d, Cannonball.y: %d, Cannonball.fire: %d\n", cannonball[j].x, cannonball[j].y, cannonball[j].fire);
 						if (GameOver()==0)
 							Game_Close();
 						else
