@@ -82,6 +82,49 @@ void draw_cannonball(int x, int y, int color){
 	VGA_plot_pixel(x-1, y, color);
 }
 
+//function to check for collisions (might need some work depending on how it feels)
+
+int boat_hit_cannonball(int bx, int by, int bw, int bh, int cx, int cy)
+{
+	int boat_left   = bx;
+	int boat_right  = bx + bw;
+	int boat_top    = by;
+	int boat_bottom = by + bh;
+
+	int ball_left   = cx - 1;
+	int ball_right  = cx + 1;
+	int ball_top    = cy - 1;
+	int ball_bottom = cy + 1;
+
+	if(ball_right < boat_left)   return 0;
+	if(ball_left > boat_right)   return 0;
+	if(ball_bottom < boat_top)   return 0;
+	if(ball_top > boat_bottom)   return 0;
+
+	return 1;
+}
+
+void clear_boat(int x, int y, int w, int h, int color)
+{
+	
+	rectangle(x, y, x + w+1, y + h+1, color);
+}
+
+void draw_boat(int x, int y, int w, int h, int color)
+{
+	VGA_plot_pixel(x+3, y, WHITE);
+	VGA_plot_pixel(x+2, y, WHITE);
+	VGA_plot_pixel(x+1, y, BROWN_DARK);
+	VGA_plot_pixel(x+1, y+1, BROWN_DARK);
+	VGA_plot_pixel(x+1, y+2, BROWN_DARK);
+	VGA_plot_pixel(x, y+2, BROWN_LIGHT);
+	VGA_plot_pixel(x+3, y+2, BROWN_LIGHT);
+	VGA_plot_pixel(x, y+3, BROWN_LIGHT);
+	VGA_plot_pixel(x+1, y+3, BROWN_LIGHT);
+	VGA_plot_pixel(x+2, y+3, BROWN_LIGHT);
+	VGA_plot_pixel(x+3, y+3, BROWN_LIGHT);
+}
+
 void move_cannonball(int x, int y, int color){
 	draw_cannonball(x, y, color);
 	VGA_plot_pixel(x-1, y+1, BLACK);

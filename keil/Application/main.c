@@ -20,13 +20,16 @@
 #define bottom_boundary 116
 #define boundary_thick 1
 #define CANNON_OFFSET 2			// used for hit detection
+#define PlayerWIDTH 3
+#define PlayerHEIGHT 3
+#define background_color BLACK
 
 //Global variables
 static int i, j;
 static char key;
 static int score;
 static int pause;
-static int snake_has_moved;
+static int player_has_moved;
 
 static int gamespeed;
 static int speed_table[10]={6,9,12,15,20,25,30,35,40,100};
@@ -38,12 +41,15 @@ struct target{
 	int reach;
 	}target;
 
-struct Snake{
-	int x[N];
-	int y[N];
-	int node;
+struct Player{
+	int x;
+	int y;
+	int width;
+	int height;
 	int direction;
-	}snake;
+	int node;
+	}player;
+
 
 struct Cannon{
 	int x;
@@ -64,6 +70,9 @@ struct Cannonball{
 }cannonball[8];
 
 
+
+
+
 //---------------------------------------------
 // Game
 //---------------------------------------------
@@ -74,10 +83,16 @@ void Game_Init(void)
 	//Draw a game region
 	int i;
 	clear_screen();
+
+
+	rectangle(top_boundary, right_boundary, bottom_boundary, left_boundary, background_color); //tried to fill screen blue, did not work set back to black for now 
+
+
 	rectangle(left_boundary,top_boundary,right_boundary,top_boundary+boundary_thick,BLUE);
 	rectangle(left_boundary,top_boundary,left_boundary+boundary_thick,bottom_boundary,BLUE);
 	rectangle(left_boundary,bottom_boundary,right_boundary,bottom_boundary+boundary_thick,BLUE);
 	rectangle(right_boundary,top_boundary,right_boundary+boundary_thick,bottom_boundary+boundary_thick,BLUE);	
+	
 
 	
 	for(i = 0; i < 8; i++){
@@ -102,11 +117,13 @@ void Game_Init(void)
 	timer_enable();
 	
 	target.reach=1;
-	snake.direction=1;
-	snake.x[0]=60;snake.y[0]=80;
-	snake.x[1]=62;snake.y[1]=80;
-	snake.node=4;
+	player.direction=1;
+	player.x=46;player.y=32;
+	player.width=PlayerWIDTH;player.height=PlayerHEIGHT;
+	player.node=4;
 	pause=0;
+
+	draw_boat(player.x, player.y, player.width, player.height, BROWN_LIGHT);
 	
 	//Print instructions
 	printf("\n\n-------- EDK Demo ---------");
@@ -161,15 +178,7 @@ void Game_Close(void){
 
 }
 
-//Generate a random target using system tick as seed
-void target_gen(void){
-		target.x= (char)random(left_boundary+boundary_thick+1,right_boundary-2);
-		target.x=target.x-target.x%2;
-		delay(111*target.x);
-		target.y= (char)random(top_boundary+boundary_thick+1,bottom_boundary-2);
-		target.y=target.y-target.y%2;
-		target.reach=0;	
-}
+
 	
 int GameOver(void){
 	char key;
@@ -258,36 +267,47 @@ void GPIO0_ISR()
 //---------------------------------------------
 
 void UART_ISR(void)
-{	
+{
+	key = UartGetc();
 
-  key=UartGetc();	
-	
-	//Only update the direction if the previous movement is finished
-	if(snake_has_moved==1){			
-				if(key==UP&&snake.direction!=4)
-					snake.direction=3;
-				else
-					if(key==RIGHT&&snake.direction!=2)
-						snake.direction=1;
-					else
-						if(key==LEFT&&snake.direction!=1)
-							snake.direction=2;
-						else
-							if(key==DOWN&&snake.direction!=3)
-								snake.direction=4;
+	if(key == UP) {
+		clear_boat(player.x, player.y, player.width, player.height, background_color);
+		player.y -= 2;
+	}
+	else if(key == DOWN) {
+		clear_boat(player.x, player.y, player.width, player.height, background_color);
+		player.y += 2;
+	}
+	else if(key == LEFT) {
+		clear_boat(player.x, player.y, player.width, player.height, background_color);
+		player.x -= 2;
+	}
+	else if(key == RIGHT) {
+		clear_boat(player.x, player.y, player.width, player.height, background_color);
+		player.x += 2;
+	}
+	else if(key == PAUSE) {
+		if(pause == 0){
+			pause = 1;
+			NVIC_DisableIRQ(Timer_IRQn);
 		}
-		if(key==PAUSE){
-				if(pause==0){
-						pause=1;
-						NVIC_DisableIRQ(Timer_IRQn);	
-				}
-				else{
-						pause =0;
-						NVIC_EnableIRQ(Timer_IRQn);
-				}
+		else{
+			pause = 0;
+			NVIC_EnableIRQ(Timer_IRQn);
 		}
-		
-		snake_has_moved=0;
+	}
+
+	// this keeps the player inside the borders 
+	if(player.x < left_boundary + boundary_thick)
+		player.x = left_boundary + boundary_thick;
+	if(player.x + player.width >= right_boundary)
+		player.x = right_boundary - player.width - 1;
+	if(player.y < top_boundary + boundary_thick)
+		player.y = top_boundary + boundary_thick;
+	if(player.y + player.height >= bottom_boundary)
+		player.y = bottom_boundary - player.height - 1;
+
+	draw_boat(player.x, player.y, player.width, player.height, BROWN_LIGHT);
 		
 }
  
@@ -305,80 +325,9 @@ void Timer_ISR(void)
 	// If game is not paused
 	if(pause==0){
 		
-			//If target is reached, generate a new one
-			if(target.reach==1){
-
-				//Generate a new target address that is not overlapped with the snake
-				do{
-					overlap=0;
-					target_gen();
-					for(i=0;i<snake.node;i++){
-						if(snake.x[i]==target.x&&snake.y[i]==target.y){
-							overlap=1;
-							break;
-						}
-					}
-				}while(overlap==1);
-					
-				//Draw the target
-				rectangle(target.x,target.y,target.x+2,target.y+2,GREEN);
-				//Update the game speed (maximum 10 levels)	
-			}
 			
-			//Shift the snake
-			for(i=snake.node-1;i>0;i--){
-				snake.x[i]=snake.x[i-1];
-				snake.y[i]=snake.y[i-1];
-			}
 			
-			switch(snake.direction){
-				case 1:snake.x[0]+=2;break;
-				case 2: snake.x[0]-=2;break;
-				case 3: snake.y[0]-=2;break;
-				case 4: snake.y[0]+=2;break;
-			}
 			
-			//Detect if the snake reaches the target
-			if(snake.x[0]==target.x&&snake.y[0]==target.y){
-				rectangle(target.x,target.y,target.x+2,target.y+2,BLACK);
-				snake.x[snake.node]=-10;snake.y[snake.node]=-10;
-				snake.node++;
-				target.reach=1;
-				score+=1;				
-				if (score<=10)
-					gamespeed=speed_table[score];	
-				timer_init((Timer_Load_Value_For_One_Sec/gamespeed),Timer_Prescaler,1);	
-				timer_enable();
-				write_LED(score);
-				printf("\nScore=%d\n",score);
-			}
-			
-			//Detect if the snake hits itself
-			for(i=3;i<snake.node;i++){
-				if(snake.x[i]==snake.x[0]&&snake.y[i]==snake.y[0]){
-					if (GameOver()==0)
-						Game_Close();
-					else
-						Game_Init();
-				}
-			}
-			
-			//Detect if the snake hits the boundry
-			if(snake.x[0]<left_boundary+boundary_thick||snake.x[0]>=right_boundary||snake.y[0]<top_boundary+boundary_thick||snake.y[0]>=bottom_boundary){
-				if (GameOver()==0){
-					Game_Close();
-					return;
-				}
-				else{
-					Game_Init();
-					return;
-				}
-			}		
-			
-			//Move the snake
-			for(i=0;i<snake.node;i++)
-				rectangle(snake.x[i],snake.y[i],snake.x[i]+2,snake.y[i]+2,RED);
-				rectangle(snake.x[snake.node-1],snake.y[snake.node-1],snake.x[snake.node-1]+2,snake.y[snake.node-1]+2,BLACK);
 
 			// Fire cannonball
 			for(j = 0; j < 8; j++){
@@ -390,8 +339,8 @@ void Timer_ISR(void)
 						}	
 						else{
 							cannonball[j].fire = 0;
-							draw_cannonball(cannonball[j].x, cannonball[j].y, BLACK);
-							draw_cannonball(cannonball[j].x, cannonball[j].y+1, BLACK);
+							draw_cannonball(cannonball[j].x, cannonball[j].y, background_color);
+							draw_cannonball(cannonball[j].x, cannonball[j].y+1, background_color);
 							VGA_plot_pixel(cannonball[j].x, cannonball[j].y, BLUE);
 							VGA_plot_pixel(cannonball[j].x-1, cannonball[j].y, BLUE);
 							VGA_plot_pixel(cannonball[j].x+1, cannonball[j].y, BLUE);
@@ -410,23 +359,23 @@ void Timer_ISR(void)
 
 			// Detect if snake hits cannonaball
 			
-			for(i=3;i<snake.node;i++){
+			for(i=3;i<player.node;i++){
 				for(j=0; j<8; j++){
 					if(	(cannonball[j].fire == 1) &&
-							(
-							(snake.x[i]==cannonball[j].x&&snake.y[i]==(cannonball[j].y + CANNON_OFFSET))	 ||
-							(snake.x[i]==cannonball[j].x+1&&snake.y[i]==(cannonball[j].y + CANNON_OFFSET)) ||
-							(snake.x[i]==cannonball[j].x-1&&snake.y[i]==(cannonball[j].y + CANNON_OFFSET)) ||
-							(snake.x[i]==cannonball[j].x&&snake.y[i]==(cannonball[j].y+1 + CANNON_OFFSET)) ||
-							(snake.x[i]==cannonball[j].x&&snake.y[i]==(cannonball[j].y-1 + CANNON_OFFSET))
-							)
+							boat_hit_cannonball(
+							player.x,
+							player.y,
+							player.width,
+							player.height,
+							cannonball[j].x,
+							cannonball[j].y + CANNON_OFFSET)
 					){
 						printf("Conditions:\n");
-						printf("%d\n", (snake.x[i]==cannonball[j].x&&snake.y[i]==(cannonball[j].y + CANNON_OFFSET) ));
-						printf("%d\n", (snake.x[i]==cannonball[j].x+1&&snake.y[i]==(cannonball[j].y + CANNON_OFFSET) ));
-						printf("%d\n", (snake.x[i]==cannonball[j].x-1&&snake.y[i]==(cannonball[j].y + CANNON_OFFSET)));
-						printf("%d\n", (snake.x[i]==cannonball[j].x&&snake.y[i]==(cannonball[j].y+1 + CANNON_OFFSET)));
-						printf("%d\n", (snake.x[i]==cannonball[j].x&&snake.y[i]==(cannonball[j].y-1 + CANNON_OFFSET)));
+						printf("%d\n", (player.x==cannonball[j].x&&player.y==(cannonball[j].y + CANNON_OFFSET) ));
+						printf("%d\n", (player.x==cannonball[j].x+1&&player.y==(cannonball[j].y + CANNON_OFFSET) ));
+						printf("%d\n", (player.x==cannonball[j].x-1&&player.y==(cannonball[j].y + CANNON_OFFSET)));
+						printf("%d\n", (player.x==cannonball[j].x&&player.y==(cannonball[j].y+1 + CANNON_OFFSET)));
+						printf("%d\n", (player.x==cannonball[j].x&&player.y==(cannonball[j].y-1 + CANNON_OFFSET)));
 						printf("Variables:\n");
 						printf("Cannonball.x: %d, Cannonball.y: %d, Cannonball.fire: %d\n", cannonball[j].x, cannonball[j].y, cannonball[j].fire);
 						if (GameOver()==0)
@@ -444,7 +393,7 @@ void Timer_ISR(void)
 			
 	
 	// Mark that snake has moved
-	snake_has_moved=1;
+	player_has_moved=1;
 
 	//Display the total distance that the snake has moved
 	Display_Int_Times();
@@ -453,6 +402,8 @@ void Timer_ISR(void)
 	timer_irq_clear();
 		
 }	
+
+
 
 //---------------------------------------------
 // Main Function

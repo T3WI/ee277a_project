@@ -25,6 +25,8 @@
 #define BLUE 0x03
 #define WHITE 0xFF
 #define BLACK 0x00
+#define BROWN_DARK  0x64
+#define BROWN_LIGHT 0x88
 
 //Command from the keyboard
 #define LEFT 0x61
