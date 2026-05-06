@@ -18,18 +18,23 @@
 #define right_boundary 96
 #define top_boundary 5
 #define bottom_boundary 116
-#define boundary_thick 1
-#define CANNON_OFFSET 2			// used for hit detection
+#define boundary_thick 1		//changed to global variable
+#define CANNON_OFFSET 2				// used for hit detection
 #define PlayerWIDTH 3
 #define PlayerHEIGHT 3
 #define background_color BLACK
 
 //Global variables
+static int ceiling_thick = 1;	//changed to static variable
 static int i, j;
 static char key;
-static int score;
+static int cannon_score;
+static int boat_score;
 static int pause;
 static int player_has_moved;
+
+static int tick_counter = 0;		//Used for speed and score keeping
+static int seconds_elapsed = 0;
 
 static int gamespeed;
 static int speed_table[10]={6,9,12,15,20,25,30,35,40,100};
@@ -109,8 +114,9 @@ void Game_Init(void)
 	}
 	//Initialise data
 	
-	score=0;
-	gamespeed=speed_table[score];		
+	boat_score=0;							//set boat's score to 0
+	cannon_score=20;						//set cannon score to 10 to start
+	gamespeed=speed_table[boat_score];		//whenever boat gains a point, the game speed increases
 	
 	//Initialise timer (load value, prescaler value, mode value)
 	timer_init((Timer_Load_Value_For_One_Sec/gamespeed),Timer_Prescaler,1);	
@@ -127,13 +133,13 @@ void Game_Init(void)
 	
 	//Print instructions
 	printf("\n\n-------- EDK Demo ---------");
-	printf("\n---- UART Guy Survival Game -----");
+	printf("\n---- Destroy the Boat!!! -----");
   printf("\nCentre btn ..... hard reset");
   printf("\nKeyboard r ..... soft reset");
-  printf("\nKeyboard w ....... move UART guy up");
-  printf("\nKeyboard s ...... move UART guy down");
-  printf("\nKeyboard a ...... move UART guy left");
-  printf("\nKeyboard d ...... move UART guy right");
+  printf("\nKeyboard w ....... move Boat up");
+  printf("\nKeyboard s ...... move Boat down");
+  printf("\nKeyboard a ...... move Boat left");
+  printf("\nKeyboard d ...... move Boat right");
 	printf("\nShoot cannons using 8 rightmost FPGA switches");
   printf("\nKeyboard space ...... pause");
   printf("\n---------------------------");	
@@ -145,8 +151,8 @@ void Game_Init(void)
 	printf("\nPress any key to start\n");	
 	while(KBHIT()==0);
 		
-	printf("\nScore=%d\n",score);
-	
+	printf("\nCannon_Score=%d\n",cannon_score);
+	printf("\nBoat_Score=%d\n",boat_score);
 	NVIC_EnableIRQ(Timer_IRQn);			//start timing
 	NVIC_EnableIRQ(UART_IRQn);	
 	NVIC_EnableIRQ(GPIO7_IRQn);
@@ -162,7 +168,8 @@ void Game_Init(void)
 
 void Game_Close(void){
 	clear_screen();
-	score=0;
+	cannon_score=0;
+	boat_score=0;
 	printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");		//flush screen
 	printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
 	NVIC_DisableIRQ(Timer_IRQn);			
@@ -175,9 +182,7 @@ void Game_Close(void){
 	NVIC_DisableIRQ(GPIO2_IRQn);
 	NVIC_DisableIRQ(GPIO1_IRQn);
 	NVIC_DisableIRQ(GPIO0_IRQn);	
-
 }
-
 
 	
 int GameOver(void){
@@ -200,7 +205,9 @@ int GameOver(void){
 		cannonball[i].state = INITIAL;
 	}
 
-	printf("\nGame over\n");
+	printf("\nBOAT DESTROYED\n");
+	printf("Boat_score: %d\n", boat_score);
+	printf("Cannon_score: %d\n", cannon_score);
 	printf("\nPress 'q' to quit");
 	printf("\nPress 'r' to replay");
 	while(1){
@@ -223,42 +230,42 @@ int GameOver(void){
 void GPIO7_ISR()
 {
 	cannonball[7].fire = 1;
-	printf("ISR7 WORK\n");
+	//printf("ISR7 WORK\n");
 }
 void GPIO6_ISR()
 {	
 	cannonball[6].fire = 1;	
-	printf("ISR6 WORK\n");
+	//printf("ISR6 WORK\n");
 }
 void GPIO5_ISR()
 {
 	cannonball[5].fire = 1;	
-	printf("ISR5 WORK\n");
+	//printf("ISR5 WORK\n");
 }
 void GPIO4_ISR()
 {
 	cannonball[4].fire = 1;	
-	printf("ISR4 WORK\n");
+	//printf("ISR4 WORK\n");
 }
 void GPIO3_ISR()
 {
 	cannonball[3].fire = 1;	
-	printf("ISR3 WORK\n");
+	//printf("ISR3 WORK\n");
 }
 void GPIO2_ISR()
 {
 	cannonball[2].fire = 1;	
-	printf("ISR2 WORK\n");
+	//printf("ISR2 WORK\n");
 }
 void GPIO1_ISR()
 {
 	cannonball[1].fire = 1;
-	printf("ISR1 WORK\n");
+	//printf("ISR1 WORK\n");
 }
 void GPIO0_ISR()
 {
 	cannonball[0].fire = 1;
-	printf("ISR0 WORK\n");
+	//printf("ISR0 WORK\n");
 }
 
 
@@ -300,20 +307,27 @@ void UART_ISR(void)
 	// this keeps the player inside the borders 
 	if(player.x < left_boundary + boundary_thick)
 		player.x = left_boundary + boundary_thick;
+	
 	if(player.x + player.width >= right_boundary)
 		player.x = right_boundary - player.width - 1;
+	
 	if(player.y < top_boundary + boundary_thick)
 		player.y = top_boundary + boundary_thick;
+	
 	if(player.y + player.height >= bottom_boundary)
 		player.y = bottom_boundary - player.height - 1;
 
+	if(player.y < top_boundary + ceiling_thick)
+		player.y = top_boundary + ceiling_thick;
+	
+	
 	draw_boat(player.x, player.y, player.width, player.height, BROWN_LIGHT);
 		
 }
  
 
 //---------------------------------------------
-// TIMER ISR -- used to move the snake
+// TIMER ISR -- used for changing game speed and score keeping
 //---------------------------------------------
 
 
@@ -325,16 +339,40 @@ void Timer_ISR(void)
 	// If game is not paused
 	if(pause==0){
 		
-			
-			
-			
+		
+        tick_counter++;     // Increment the tick counter
 
+        // Check if 1 second has passed
+        // Since Timer is initialized as (One_Sec / gamespeed), 
+        // 1 second has passed when tick_counter == gamespeed.
+        if(tick_counter >= gamespeed) {
+            tick_counter = 0;
+            seconds_elapsed++;
+            
+            if(seconds_elapsed % 5 == 0) {	//Every 5 seconds, boat score and speed is increased
+                boat_score++;
+								cannon_score--;
+								ceiling_thick += 3;
+								rectangle(left_boundary,top_boundary,right_boundary,top_boundary+ceiling_thick,RED);//ADDED
+                if(boat_score < 10) {
+                    gamespeed = speed_table[boat_score];
+                    timer_init((Timer_Load_Value_For_One_Sec / gamespeed), Timer_Prescaler, 1);
+                    timer_enable();
+                }
+                
+                printf("\nSpeed Level: %d; Boat Score: %d\n", boat_score, boat_score);
+            }
+        }
+    
+			
+			
+		
 			// Fire cannonball
 			for(j = 0; j < 8; j++){
 				if(cannonball[j].fire == 1){
 					if(cannonball[j].state == FIRING){
 						if(cannonball[j].y > top_boundary){
-							move_cannonball(cannonball[j].x, cannonball[j].y, GREEN);
+							move_cannonball(cannonball[j].x, cannonball[j].y, RED);
 							cannonball[j].y--;
 						}	
 						else{
@@ -357,9 +395,8 @@ void Timer_ISR(void)
 				}
 			}
 
-			// Detect if snake hits cannonaball
+			// Detect if Boat hits cannonball
 			
-			for(i=3;i<player.node;i++){
 				for(j=0; j<8; j++){
 					if(	(cannonball[j].fire == 1) &&
 							boat_hit_cannonball(
@@ -384,8 +421,7 @@ void Timer_ISR(void)
 							Game_Init();
 					}
 				}
-				
-			}	
+
 			
 
 		}
