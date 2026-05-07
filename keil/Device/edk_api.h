@@ -47,6 +47,9 @@ void Display_Int_Times(void);				//Display the number of interrupts on the 7-seg
 void draw_cannon(int x, int y);
 void draw_cannonball(int x, int y, int color);
 void move_cannonball(int x, int y, int color);
+void clear_boat(int x, int y, int w, int h, int color);
+void draw_boat(int x, int y, int w, int h, int color);
+int boat_hit_cannonball(int bx, int by, int bw, int bh, int cx, int cy);
 void rectangle(int x1,int y1,int x2,int y2, int color);		// Draw a rectangle on the screen
 
 void clear_screen(void);			// Clean up the screen

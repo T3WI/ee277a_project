@@ -17,16 +17,17 @@ typedef enum IRQn
   SysTick_IRQn                  = -1,       /*!< 15 Cortex-M0 System Tick Interrupt               */
 
 /******  CMSDK Specific Interrupt Numbers *********************************************************/
-  Timer_IRQn                  = 0,       
-  UART_IRQn                  = 1,       
-  GPIO7_IRQn                = 2,
-  GPIO6_IRQn                = 3,
-  GPIO5_IRQn                = 4,
-  GPIO4_IRQn                = 5,
-  GPIO3_IRQn                = 6,
-  GPIO2_IRQn                = 7,
-  GPIO1_IRQn                = 8,
-  GPIO0_IRQn                = 9,
+  Timer_IRQn                  = 0,
+  UART_IRQn                  = 1,   
+	MIC_IRQn 									= 2,
+  GPIO7_IRQn                = 3,
+  GPIO6_IRQn                = 4,
+  GPIO5_IRQn                = 5,
+  GPIO4_IRQn                = 6,
+  GPIO3_IRQn                = 7,
+  GPIO2_IRQn                = 8,
+  GPIO1_IRQn                = 9,
+  GPIO0_IRQn                = 10,
 } IRQn_Type;
 
 

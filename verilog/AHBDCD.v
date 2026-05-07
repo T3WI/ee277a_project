@@ -3,7 +3,7 @@
 //                                                                              //
 //Copyright (c) 2012, ARM All rights reserved.                                  //
 //                                                                              //
-//THIS END USER LICENCE AGREEMENT (“LICENCE”) IS A LEGAL AGREEMENT BETWEEN      //
+//THIS END USER LICENCE AGREEMENT (ï¿½LICENCEï¿½) IS A LEGAL AGREEMENT BETWEEN      //
 //YOU AND ARM LIMITED ("ARM") FOR THE USE OF THE SOFTWARE EXAMPLE ACCOMPANYING  //
 //THIS LICENCE. ARM IS ONLY WILLING TO LICENSE THE SOFTWARE EXAMPLE TO YOU ON   //
 //CONDITION THAT YOU ACCEPT ALL OF THE TERMS IN THIS LICENCE. BY INSTALLING OR  //
@@ -73,37 +73,37 @@ always@*
 begin
 
   case(HADDR[31:24])
-    8'h00: 						//MEMORY MAP --> 0x0000_0000 to 0x00FF_FFFF  16MB
+    8'h00: 						//MEMORY MAP --> 0x0000_0000 to 0x00FF_FFFF  16MB (memory)
       begin
         dec = 16'b0000_0000_00000001;
         MUX_SEL = 4'b0000;
       end
-    8'h50: 						//MEMORY MAP --> 0x5000_0000 to 0x50FF_FFFF  16MB 
+    8'h50: 						//MEMORY MAP --> 0x5000_0000 to 0x50FF_FFFF  16MB (vga)
       begin
         dec = 16'b0000_0000_0000_0010;
         MUX_SEL = 4'b0001;
       end
-    8'h51: 						//MEMORY MAP --> 0x5100_0000 to 0x51FF_FFFF  16MB
+    8'h51: 						//MEMORY MAP --> 0x5100_0000 to 0x51FF_FFFF  16MB (uart)
       begin
         dec =16'b0000_0000_0000_0100;
         MUX_SEL = 4'b0010;
       end   
-    8'h52:  					//MEMORY MAP --> 0x5200_0000 to 0x52FF_FFFF  16MB
+    8'h52:  					//MEMORY MAP --> 0x5200_0000 to 0x52FF_FFFF  16MB (timer)
       begin
         dec = 16'b0000_0000_0000_1000;
         MUX_SEL = 4'b0011;
       end
-    8'h53: 						//MEMORY MAP --> 0x5300_0000 to 0x53FF_FFFF  16MB 
+    8'h53: 						//MEMORY MAP --> 0x5300_0000 to 0x53FF_FFFF  16MB (GPIO)
       begin
         dec = 16'b0000_0000_0001_0000;
         MUX_SEL = 4'b0100;
       end
-    8'h54:						//MEMORY MAP --> 0x5400_0000 to 0x54FF_FFFF  16MB  
+    8'h54:						//MEMORY MAP --> 0x5400_0000 to 0x54FF_FFFF  16MB  (7seg)
       begin
         dec = 16'b0000_0000_0010_0000;
         MUX_SEL = 4'b0101;
       end
-    8'h55:						//MEMORY MAP --> 0x5500_0000 to 0x55FF_FFFF  16MB 
+    8'h55:						//MEMORY MAP --> 0x5500_0000 to 0x55FF_FFFF  16MB (MIC)
       begin
         dec = 16'b0000_0000_0100_0000;
         MUX_SEL = 4'b0110;

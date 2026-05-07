@@ -314,64 +314,64 @@ Image Symbol Table
     .ARM.Collect$$rtexit$$00000002           0x0000010c   Section        0  rtexit2.o(.ARM.Collect$$rtexit$$00000002)
     .ARM.Collect$$rtexit$$00000003           0x0000010c   Section        4  rtexit2.o(.ARM.Collect$$rtexit$$00000003)
     .ARM.Collect$$rtexit$$00000004           0x00000110   Section        6  rtexit2.o(.ARM.Collect$$rtexit$$00000004)
-    .text                                    0x00000118   Section      116  cm0dsasm.o(.text)
-    .text                                    0x0000018c   Section        0  edk_api.o(.text)
-    NVIC_SetPriority                         0x0000018d   Thumb Code   110  edk_api.o(.text)
-    .text                                    0x00000524   Section        0  edk_driver.o(.text)
-    .text                                    0x000005ac   Section        0  retarget.o(.text)
-    .text                                    0x0000060c   Section        0  main.o(.text)
-    NVIC_EnableIRQ                           0x000011fd   Thumb Code    14  main.o(.text)
-    NVIC_DisableIRQ                          0x0000120b   Thumb Code    16  main.o(.text)
-    .text                                    0x0000127c   Section        2  use_no_semi.o(.text)
-    .text                                    0x00001280   Section        0  noretval__2printf.o(.text)
-    .text                                    0x0000129c   Section        0  __printf.o(.text)
-    .text                                    0x00001308   Section        0  _printf_dec.o(.text)
-    .text                                    0x00001374   Section      346  aeabi_sdiv.o(.text)
-    .text                                    0x000014ce   Section        0  heapauxi.o(.text)
-    .text                                    0x000014d4   Section        0  _printf_intcommon.o(.text)
-    .text                                    0x00001584   Section        0  _printf_char_file.o(.text)
-    .text                                    0x000015ac   Section        0  rtudiv10.o(.text)
-    .text                                    0x000015d4   Section        0  _printf_char_common.o(.text)
-    _printf_input_char                       0x000015d5   Thumb Code    10  _printf_char_common.o(.text)
-    .text                                    0x00001604   Section       62  sys_stackheap_outer.o(.text)
-    .text                                    0x00001642   Section        0  exit.o(.text)
-    .text                                    0x00001654   Section        8  libspace.o(.text)
-    .data                                    0x0000166c   Section        5  edk_api.o(.data)
-    dig1                                     0x0000166c   Data           1  edk_api.o(.data)
-    dig2                                     0x0000166d   Data           1  edk_api.o(.data)
-    dig3                                     0x0000166e   Data           1  edk_api.o(.data)
-    dig4                                     0x0000166f   Data           1  edk_api.o(.data)
-    dig5                                     0x00001670   Data           1  edk_api.o(.data)
-    .data                                    0x00001674   Section       16  retarget.o(.data)
-    dig1                                     0x00001674   Data           1  retarget.o(.data)
-    dig2                                     0x00001675   Data           1  retarget.o(.data)
-    dig3                                     0x00001676   Data           1  retarget.o(.data)
-    dig4                                     0x00001677   Data           1  retarget.o(.data)
-    dig5                                     0x00001678   Data           1  retarget.o(.data)
-    .data                                    0x00001684   Section       92  main.o(.data)
-    dig1                                     0x00001684   Data           1  main.o(.data)
-    dig2                                     0x00001685   Data           1  main.o(.data)
-    dig3                                     0x00001686   Data           1  main.o(.data)
-    dig4                                     0x00001687   Data           1  main.o(.data)
-    dig5                                     0x00001688   Data           1  main.o(.data)
-    ceiling_thick                            0x0000168c   Data           4  main.o(.data)
-    i                                        0x00001690   Data           4  main.o(.data)
-    j                                        0x00001694   Data           4  main.o(.data)
-    key                                      0x00001698   Data           1  main.o(.data)
-    cannon_score                             0x0000169c   Data           4  main.o(.data)
-    boat_score                               0x000016a0   Data           4  main.o(.data)
-    pause                                    0x000016a4   Data           4  main.o(.data)
-    player_has_moved                         0x000016a8   Data           4  main.o(.data)
-    tick_counter                             0x000016ac   Data           4  main.o(.data)
-    seconds_elapsed                          0x000016b0   Data           4  main.o(.data)
-    gamespeed                                0x000016b4   Data           4  main.o(.data)
-    speed_table                              0x000016b8   Data          40  main.o(.data)
-    .bss                                     0x000016e0   Section      228  main.o(.bss)
-    .bss                                     0x000017c4   Section       96  libspace.o(.bss)
-    HEAP                                     0x00001830   Section     1024  cm0dsasm.o(HEAP)
-    Heap_Mem                                 0x00001830   Data        1024  cm0dsasm.o(HEAP)
-    STACK                                    0x00001c30   Section     1024  cm0dsasm.o(STACK)
-    Stack_Mem                                0x00001c30   Data        1024  cm0dsasm.o(STACK)
+    .text                                    0x00000118   Section      124  cm0dsasm.o(.text)
+    .text                                    0x00000194   Section        0  edk_api.o(.text)
+    NVIC_SetPriority                         0x00000195   Thumb Code   110  edk_api.o(.text)
+    .text                                    0x00000534   Section        0  edk_driver.o(.text)
+    .text                                    0x000005bc   Section        0  retarget.o(.text)
+    .text                                    0x0000061c   Section        0  main.o(.text)
+    NVIC_EnableIRQ                           0x00001313   Thumb Code    14  main.o(.text)
+    NVIC_DisableIRQ                          0x00001321   Thumb Code    16  main.o(.text)
+    .text                                    0x000013a4   Section        2  use_no_semi.o(.text)
+    .text                                    0x000013a8   Section        0  noretval__2printf.o(.text)
+    .text                                    0x000013c4   Section        0  __printf.o(.text)
+    .text                                    0x00001430   Section        0  _printf_dec.o(.text)
+    .text                                    0x0000149c   Section      346  aeabi_sdiv.o(.text)
+    .text                                    0x000015f6   Section        0  heapauxi.o(.text)
+    .text                                    0x000015fc   Section        0  _printf_intcommon.o(.text)
+    .text                                    0x000016ac   Section        0  _printf_char_file.o(.text)
+    .text                                    0x000016d4   Section        0  rtudiv10.o(.text)
+    .text                                    0x000016fc   Section        0  _printf_char_common.o(.text)
+    _printf_input_char                       0x000016fd   Thumb Code    10  _printf_char_common.o(.text)
+    .text                                    0x0000172c   Section       62  sys_stackheap_outer.o(.text)
+    .text                                    0x0000176a   Section        0  exit.o(.text)
+    .text                                    0x0000177c   Section        8  libspace.o(.text)
+    .data                                    0x00001794   Section        5  edk_api.o(.data)
+    dig1                                     0x00001794   Data           1  edk_api.o(.data)
+    dig2                                     0x00001795   Data           1  edk_api.o(.data)
+    dig3                                     0x00001796   Data           1  edk_api.o(.data)
+    dig4                                     0x00001797   Data           1  edk_api.o(.data)
+    dig5                                     0x00001798   Data           1  edk_api.o(.data)
+    .data                                    0x0000179c   Section       16  retarget.o(.data)
+    dig1                                     0x0000179c   Data           1  retarget.o(.data)
+    dig2                                     0x0000179d   Data           1  retarget.o(.data)
+    dig3                                     0x0000179e   Data           1  retarget.o(.data)
+    dig4                                     0x0000179f   Data           1  retarget.o(.data)
+    dig5                                     0x000017a0   Data           1  retarget.o(.data)
+    .data                                    0x000017ac   Section       92  main.o(.data)
+    dig1                                     0x000017ac   Data           1  main.o(.data)
+    dig2                                     0x000017ad   Data           1  main.o(.data)
+    dig3                                     0x000017ae   Data           1  main.o(.data)
+    dig4                                     0x000017af   Data           1  main.o(.data)
+    dig5                                     0x000017b0   Data           1  main.o(.data)
+    ceiling_thick                            0x000017b4   Data           4  main.o(.data)
+    i                                        0x000017b8   Data           4  main.o(.data)
+    j                                        0x000017bc   Data           4  main.o(.data)
+    key                                      0x000017c0   Data           1  main.o(.data)
+    cannon_score                             0x000017c4   Data           4  main.o(.data)
+    boat_score                               0x000017c8   Data           4  main.o(.data)
+    pause                                    0x000017cc   Data           4  main.o(.data)
+    player_has_moved                         0x000017d0   Data           4  main.o(.data)
+    tick_counter                             0x000017d4   Data           4  main.o(.data)
+    seconds_elapsed                          0x000017d8   Data           4  main.o(.data)
+    gamespeed                                0x000017dc   Data           4  main.o(.data)
+    speed_table                              0x000017e0   Data          40  main.o(.data)
+    .bss                                     0x00001808   Section      228  main.o(.bss)
+    .bss                                     0x000018ec   Section       96  libspace.o(.bss)
+    HEAP                                     0x00001950   Section     1024  cm0dsasm.o(HEAP)
+    Heap_Mem                                 0x00001950   Data        1024  cm0dsasm.o(HEAP)
+    STACK                                    0x00001d50   Section     1024  cm0dsasm.o(STACK)
+    Stack_Mem                                0x00001d50   Data        1024  cm0dsasm.o(STACK)
 
     Global Symbols
 
@@ -475,82 +475,85 @@ Image Symbol Table
     GPIO2_Handler                            0x00000155   Thumb Code     8  cm0dsasm.o(.text)
     GPIO1_Handler                            0x0000015d   Thumb Code     8  cm0dsasm.o(.text)
     GPIO0_Handler                            0x00000165   Thumb Code     8  cm0dsasm.o(.text)
-    __user_initial_stackheap                 0x0000016d   Thumb Code     0  cm0dsasm.o(.text)
-    clear_screen                             0x000001fb   Thumb Code    34  edk_api.o(.text)
-    SoC_init                                 0x0000021d   Thumb Code   110  edk_api.o(.text)
-    Display_Int_Times                        0x0000028b   Thumb Code   106  edk_api.o(.text)
-    rectangle                                0x000002f5   Thumb Code    46  edk_api.o(.text)
-    draw_cannon                              0x00000323   Thumb Code    58  edk_api.o(.text)
-    draw_cannonball                          0x0000035d   Thumb Code    60  edk_api.o(.text)
-    boat_hit_cannonball                      0x00000399   Thumb Code    92  edk_api.o(.text)
-    clear_boat                               0x000003f5   Thumb Code    32  edk_api.o(.text)
-    draw_boat                                0x00000415   Thumb Code   122  edk_api.o(.text)
-    move_cannonball                          0x0000048f   Thumb Code    50  edk_api.o(.text)
-    read_switch                              0x000004c1   Thumb Code     8  edk_api.o(.text)
-    write_LED                                0x000004c9   Thumb Code    12  edk_api.o(.text)
-    delay                                    0x000004d5   Thumb Code    12  edk_api.o(.text)
-    random                                   0x000004e1   Thumb Code    40  edk_api.o(.text)
-    VGA_plot_pixel                           0x00000525   Thumb Code    14  edk_driver.o(.text)
-    seven_seg_write                          0x00000533   Thumb Code    20  edk_driver.o(.text)
-    timer_init                               0x00000547   Thumb Code    40  edk_driver.o(.text)
-    timer_enable                             0x0000056f   Thumb Code    18  edk_driver.o(.text)
-    timer_irq_clear                          0x00000581   Thumb Code    10  edk_driver.o(.text)
-    GPIO_read                                0x0000058b   Thumb Code    14  edk_driver.o(.text)
-    GPIO_write                               0x00000599   Thumb Code    14  edk_driver.o(.text)
-    VGAPutc                                  0x000005ad   Thumb Code     8  retarget.o(.text)
-    UartPutc                                 0x000005b5   Thumb Code     8  retarget.o(.text)
-    UartGetc                                 0x000005bd   Thumb Code    10  retarget.o(.text)
-    KBHIT                                    0x000005c7   Thumb Code    22  retarget.o(.text)
-    fputc                                    0x000005dd   Thumb Code    14  retarget.o(.text)
-    fgetc                                    0x000005eb   Thumb Code    10  retarget.o(.text)
-    ferror                                   0x000005f5   Thumb Code     8  retarget.o(.text)
-    _ttywrch                                 0x000005fd   Thumb Code    12  retarget.o(.text)
-    _sys_exit                                0x00000609   Thumb Code     4  retarget.o(.text)
-    Game_Init                                0x0000060d   Thumb Code   470  main.o(.text)
-    Game_Close                               0x000007e3   Thumb Code    96  main.o(.text)
-    GameOver                                 0x00000843   Thumb Code   212  main.o(.text)
-    GPIO7_ISR                                0x00000917   Thumb Code     8  main.o(.text)
-    GPIO6_ISR                                0x0000091f   Thumb Code   770  main.o(.text)
-    GPIO5_ISR                                0x00000c21   Thumb Code     8  main.o(.text)
-    GPIO4_ISR                                0x00000c29   Thumb Code     8  main.o(.text)
-    GPIO3_ISR                                0x00000c31   Thumb Code     8  main.o(.text)
-    GPIO2_ISR                                0x00000c39   Thumb Code     8  main.o(.text)
-    GPIO1_ISR                                0x00000c41   Thumb Code     8  main.o(.text)
-    GPIO0_ISR                                0x00000c49   Thumb Code     8  main.o(.text)
-    UART_ISR                                 0x00000c51   Thumb Code   330  main.o(.text)
-    Timer_ISR                                0x00000d9b   Thumb Code  1108  main.o(.text)
-    main                                     0x000011ef   Thumb Code    14  main.o(.text)
-    __I$use$semihosting                      0x0000127d   Thumb Code     0  use_no_semi.o(.text)
-    __use_no_semihosting_swi                 0x0000127d   Thumb Code     2  use_no_semi.o(.text)
-    __2printf                                0x00001281   Thumb Code    22  noretval__2printf.o(.text)
-    __printf                                 0x0000129d   Thumb Code   108  __printf.o(.text)
-    _printf_int_dec                          0x00001309   Thumb Code    90  _printf_dec.o(.text)
-    __aeabi_uidiv                            0x00001375   Thumb Code     0  aeabi_sdiv.o(.text)
-    __aeabi_uidivmod                         0x00001375   Thumb Code    20  aeabi_sdiv.o(.text)
-    __aeabi_idiv                             0x00001389   Thumb Code     0  aeabi_sdiv.o(.text)
-    __aeabi_idivmod                          0x00001389   Thumb Code   326  aeabi_sdiv.o(.text)
-    __use_two_region_memory                  0x000014cf   Thumb Code     2  heapauxi.o(.text)
-    __rt_heap_escrow$2region                 0x000014d1   Thumb Code     2  heapauxi.o(.text)
-    __rt_heap_expand$2region                 0x000014d3   Thumb Code     2  heapauxi.o(.text)
-    _printf_int_common                       0x000014d5   Thumb Code   176  _printf_intcommon.o(.text)
-    _printf_char_file                        0x00001585   Thumb Code    34  _printf_char_file.o(.text)
-    __rt_udiv10                              0x000015ad   Thumb Code    40  rtudiv10.o(.text)
-    _printf_char_common                      0x000015df   Thumb Code    32  _printf_char_common.o(.text)
-    __user_setup_stackheap                   0x00001605   Thumb Code    62  sys_stackheap_outer.o(.text)
-    exit                                     0x00001643   Thumb Code    16  exit.o(.text)
-    __user_libspace                          0x00001655   Thumb Code     8  libspace.o(.text)
-    __user_perproc_libspace                  0x00001655   Thumb Code     0  libspace.o(.text)
-    __user_perthread_libspace                0x00001655   Thumb Code     0  libspace.o(.text)
-    Region$$Table$$Base                      0x0000165c   Number         0  anon$$obj.o(Region$$Table)
-    Region$$Table$$Limit                     0x0000166c   Number         0  anon$$obj.o(Region$$Table)
-    __stdout                                 0x0000167c   Data           4  retarget.o(.data)
-    __stdin                                  0x00001680   Data           4  retarget.o(.data)
-    target                                   0x000016e0   Data          12  main.o(.bss)
-    player                                   0x000016ec   Data          24  main.o(.bss)
-    cannon                                   0x00001704   Data          64  main.o(.bss)
-    cannonball                               0x00001744   Data         128  main.o(.bss)
-    __libspace_start                         0x000017c4   Data          96  libspace.o(.bss)
-    __temporary_stack_top$libspace           0x00001824   Data           0  libspace.o(.bss)
+    MIC_Handler                              0x0000016d   Thumb Code     8  cm0dsasm.o(.text)
+    __user_initial_stackheap                 0x00000175   Thumb Code     0  cm0dsasm.o(.text)
+    clear_screen                             0x00000203   Thumb Code    34  edk_api.o(.text)
+    SoC_init                                 0x00000225   Thumb Code   118  edk_api.o(.text)
+    Display_Int_Times                        0x0000029b   Thumb Code   106  edk_api.o(.text)
+    rectangle                                0x00000305   Thumb Code    46  edk_api.o(.text)
+    draw_cannon                              0x00000333   Thumb Code    58  edk_api.o(.text)
+    draw_cannonball                          0x0000036d   Thumb Code    60  edk_api.o(.text)
+    boat_hit_cannonball                      0x000003a9   Thumb Code    92  edk_api.o(.text)
+    clear_boat                               0x00000405   Thumb Code    32  edk_api.o(.text)
+    draw_boat                                0x00000425   Thumb Code   122  edk_api.o(.text)
+    move_cannonball                          0x0000049f   Thumb Code    50  edk_api.o(.text)
+    read_switch                              0x000004d1   Thumb Code     8  edk_api.o(.text)
+    write_LED                                0x000004d9   Thumb Code    12  edk_api.o(.text)
+    delay                                    0x000004e5   Thumb Code    12  edk_api.o(.text)
+    random                                   0x000004f1   Thumb Code    40  edk_api.o(.text)
+    VGA_plot_pixel                           0x00000535   Thumb Code    14  edk_driver.o(.text)
+    seven_seg_write                          0x00000543   Thumb Code    20  edk_driver.o(.text)
+    timer_init                               0x00000557   Thumb Code    40  edk_driver.o(.text)
+    timer_enable                             0x0000057f   Thumb Code    18  edk_driver.o(.text)
+    timer_irq_clear                          0x00000591   Thumb Code    10  edk_driver.o(.text)
+    GPIO_read                                0x0000059b   Thumb Code    14  edk_driver.o(.text)
+    GPIO_write                               0x000005a9   Thumb Code    14  edk_driver.o(.text)
+    VGAPutc                                  0x000005bd   Thumb Code     8  retarget.o(.text)
+    UartPutc                                 0x000005c5   Thumb Code     8  retarget.o(.text)
+    UartGetc                                 0x000005cd   Thumb Code    10  retarget.o(.text)
+    KBHIT                                    0x000005d7   Thumb Code    22  retarget.o(.text)
+    fputc                                    0x000005ed   Thumb Code    14  retarget.o(.text)
+    fgetc                                    0x000005fb   Thumb Code    10  retarget.o(.text)
+    ferror                                   0x00000605   Thumb Code     8  retarget.o(.text)
+    _ttywrch                                 0x0000060d   Thumb Code    12  retarget.o(.text)
+    _sys_exit                                0x00000619   Thumb Code     4  retarget.o(.text)
+    Game_Init                                0x0000061d   Thumb Code   476  main.o(.text)
+    Game_Close                               0x000007f9   Thumb Code   102  main.o(.text)
+    target_gen                               0x0000085f   Thumb Code    92  main.o(.text)
+    GameOver                                 0x000008bb   Thumb Code   884  main.o(.text)
+    GPIO7_ISR                                0x00000c2f   Thumb Code     8  main.o(.text)
+    GPIO6_ISR                                0x00000c37   Thumb Code     8  main.o(.text)
+    GPIO5_ISR                                0x00000c3f   Thumb Code     8  main.o(.text)
+    GPIO4_ISR                                0x00000c47   Thumb Code     8  main.o(.text)
+    GPIO3_ISR                                0x00000c4f   Thumb Code     8  main.o(.text)
+    GPIO2_ISR                                0x00000c57   Thumb Code     8  main.o(.text)
+    GPIO1_ISR                                0x00000c5f   Thumb Code     8  main.o(.text)
+    GPIO0_ISR                                0x00000c67   Thumb Code     8  main.o(.text)
+    MIC_ISR                                  0x00000c6f   Thumb Code    40  main.o(.text)
+    UART_ISR                                 0x00000c97   Thumb Code   442  main.o(.text)
+    Timer_ISR                                0x00000e51   Thumb Code  1204  main.o(.text)
+    main                                     0x00001305   Thumb Code    14  main.o(.text)
+    __I$use$semihosting                      0x000013a5   Thumb Code     0  use_no_semi.o(.text)
+    __use_no_semihosting_swi                 0x000013a5   Thumb Code     2  use_no_semi.o(.text)
+    __2printf                                0x000013a9   Thumb Code    22  noretval__2printf.o(.text)
+    __printf                                 0x000013c5   Thumb Code   108  __printf.o(.text)
+    _printf_int_dec                          0x00001431   Thumb Code    90  _printf_dec.o(.text)
+    __aeabi_uidiv                            0x0000149d   Thumb Code     0  aeabi_sdiv.o(.text)
+    __aeabi_uidivmod                         0x0000149d   Thumb Code    20  aeabi_sdiv.o(.text)
+    __aeabi_idiv                             0x000014b1   Thumb Code     0  aeabi_sdiv.o(.text)
+    __aeabi_idivmod                          0x000014b1   Thumb Code   326  aeabi_sdiv.o(.text)
+    __use_two_region_memory                  0x000015f7   Thumb Code     2  heapauxi.o(.text)
+    __rt_heap_escrow$2region                 0x000015f9   Thumb Code     2  heapauxi.o(.text)
+    __rt_heap_expand$2region                 0x000015fb   Thumb Code     2  heapauxi.o(.text)
+    _printf_int_common                       0x000015fd   Thumb Code   176  _printf_intcommon.o(.text)
+    _printf_char_file                        0x000016ad   Thumb Code    34  _printf_char_file.o(.text)
+    __rt_udiv10                              0x000016d5   Thumb Code    40  rtudiv10.o(.text)
+    _printf_char_common                      0x00001707   Thumb Code    32  _printf_char_common.o(.text)
+    __user_setup_stackheap                   0x0000172d   Thumb Code    62  sys_stackheap_outer.o(.text)
+    exit                                     0x0000176b   Thumb Code    16  exit.o(.text)
+    __user_libspace                          0x0000177d   Thumb Code     8  libspace.o(.text)
+    __user_perproc_libspace                  0x0000177d   Thumb Code     0  libspace.o(.text)
+    __user_perthread_libspace                0x0000177d   Thumb Code     0  libspace.o(.text)
+    Region$$Table$$Base                      0x00001784   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x00001794   Number         0  anon$$obj.o(Region$$Table)
+    __stdout                                 0x000017a4   Data           4  retarget.o(.data)
+    __stdin                                  0x000017a8   Data           4  retarget.o(.data)
+    target                                   0x00001808   Data          12  main.o(.bss)
+    player                                   0x00001814   Data          24  main.o(.bss)
+    cannon                                   0x0000182c   Data          64  main.o(.bss)
+    cannonball                               0x0000186c   Data         128  main.o(.bss)
+    __libspace_start                         0x000018ec   Data          96  libspace.o(.bss)
+    __temporary_stack_top$libspace           0x0000194c   Data           0  libspace.o(.bss)
 
 
 
@@ -560,9 +563,9 @@ Memory Map of the image
 
   Image Entry point : 0x00000119
 
-  Load Region LR_1 (Base: 0x00000000, Size: 0x000016e0, Max: 0xffffffff, ABSOLUTE)
+  Load Region LR_1 (Base: 0x00000000, Size: 0x00001808, Max: 0xffffffff, ABSOLUTE)
 
-    Execution Region ER_RO (Exec base: 0x00000000, Load base: 0x00000000, Size: 0x0000166c, Max: 0xffffffff, ABSOLUTE)
+    Execution Region ER_RO (Exec base: 0x00000000, Load base: 0x00000000, Size: 0x00001794, Max: 0xffffffff, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
@@ -616,48 +619,48 @@ Memory Map of the image
     0x0000010c   0x0000010c   0x00000004   Code   RO          307    .ARM.Collect$$rtexit$$00000003  c_p.l(rtexit2.o)
     0x00000110   0x00000110   0x00000006   Code   RO          308    .ARM.Collect$$rtexit$$00000004  c_p.l(rtexit2.o)
     0x00000116   0x00000116   0x00000002   PAD
-    0x00000118   0x00000118   0x00000074   Code   RO            4  * .text               cm0dsasm.o
-    0x0000018c   0x0000018c   0x00000398   Code   RO           12    .text               edk_api.o
-    0x00000524   0x00000524   0x00000088   Code   RO           59    .text               edk_driver.o
-    0x000005ac   0x000005ac   0x00000060   Code   RO           84    .text               retarget.o
-    0x0000060c   0x0000060c   0x00000c70   Code   RO          120    .text               main.o
-    0x0000127c   0x0000127c   0x00000002   Code   RO          160    .text               c_p.l(use_no_semi.o)
-    0x0000127e   0x0000127e   0x00000002   PAD
-    0x00001280   0x00001280   0x0000001c   Code   RO          164    .text               c_p.l(noretval__2printf.o)
-    0x0000129c   0x0000129c   0x0000006c   Code   RO          166    .text               c_p.l(__printf.o)
-    0x00001308   0x00001308   0x0000006c   Code   RO          168    .text               c_p.l(_printf_dec.o)
-    0x00001374   0x00001374   0x0000015a   Code   RO          192    .text               c_p.l(aeabi_sdiv.o)
-    0x000014ce   0x000014ce   0x00000006   Code   RO          196    .text               c_p.l(heapauxi.o)
-    0x000014d4   0x000014d4   0x000000b0   Code   RO          205    .text               c_p.l(_printf_intcommon.o)
-    0x00001584   0x00001584   0x00000028   Code   RO          207    .text               c_p.l(_printf_char_file.o)
-    0x000015ac   0x000015ac   0x00000028   Code   RO          210    .text               c_p.l(rtudiv10.o)
-    0x000015d4   0x000015d4   0x00000030   Code   RO          229    .text               c_p.l(_printf_char_common.o)
-    0x00001604   0x00001604   0x0000003e   Code   RO          231    .text               c_p.l(sys_stackheap_outer.o)
-    0x00001642   0x00001642   0x00000010   Code   RO          236    .text               c_p.l(exit.o)
-    0x00001652   0x00001652   0x00000002   PAD
-    0x00001654   0x00001654   0x00000008   Code   RO          248    .text               c_p.l(libspace.o)
-    0x0000165c   0x0000165c   0x00000010   Data   RO          372    Region$$Table       anon$$obj.o
+    0x00000118   0x00000118   0x0000007c   Code   RO            4  * .text               cm0dsasm.o
+    0x00000194   0x00000194   0x000003a0   Code   RO           12    .text               edk_api.o
+    0x00000534   0x00000534   0x00000088   Code   RO           59    .text               edk_driver.o
+    0x000005bc   0x000005bc   0x00000060   Code   RO           84    .text               retarget.o
+    0x0000061c   0x0000061c   0x00000d88   Code   RO          120    .text               main.o
+    0x000013a4   0x000013a4   0x00000002   Code   RO          160    .text               c_p.l(use_no_semi.o)
+    0x000013a6   0x000013a6   0x00000002   PAD
+    0x000013a8   0x000013a8   0x0000001c   Code   RO          164    .text               c_p.l(noretval__2printf.o)
+    0x000013c4   0x000013c4   0x0000006c   Code   RO          166    .text               c_p.l(__printf.o)
+    0x00001430   0x00001430   0x0000006c   Code   RO          168    .text               c_p.l(_printf_dec.o)
+    0x0000149c   0x0000149c   0x0000015a   Code   RO          192    .text               c_p.l(aeabi_sdiv.o)
+    0x000015f6   0x000015f6   0x00000006   Code   RO          196    .text               c_p.l(heapauxi.o)
+    0x000015fc   0x000015fc   0x000000b0   Code   RO          205    .text               c_p.l(_printf_intcommon.o)
+    0x000016ac   0x000016ac   0x00000028   Code   RO          207    .text               c_p.l(_printf_char_file.o)
+    0x000016d4   0x000016d4   0x00000028   Code   RO          210    .text               c_p.l(rtudiv10.o)
+    0x000016fc   0x000016fc   0x00000030   Code   RO          229    .text               c_p.l(_printf_char_common.o)
+    0x0000172c   0x0000172c   0x0000003e   Code   RO          231    .text               c_p.l(sys_stackheap_outer.o)
+    0x0000176a   0x0000176a   0x00000010   Code   RO          236    .text               c_p.l(exit.o)
+    0x0000177a   0x0000177a   0x00000002   PAD
+    0x0000177c   0x0000177c   0x00000008   Code   RO          248    .text               c_p.l(libspace.o)
+    0x00001784   0x00001784   0x00000010   Data   RO          372    Region$$Table       anon$$obj.o
 
 
-    Execution Region ER_RW (Exec base: 0x0000166c, Load base: 0x0000166c, Size: 0x00000074, Max: 0xffffffff, ABSOLUTE)
-
-    Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
-
-    0x0000166c   0x0000166c   0x00000005   Data   RW           13    .data               edk_api.o
-    0x00001671   0x00001671   0x00000003   PAD
-    0x00001674   0x00001674   0x00000010   Data   RW           85    .data               retarget.o
-    0x00001684   0x00001684   0x0000005c   Data   RW          122    .data               main.o
-
-
-    Execution Region ER_ZI (Exec base: 0x000016e0, Load base: 0x000016e0, Size: 0x00000950, Max: 0xffffffff, ABSOLUTE)
+    Execution Region ER_RW (Exec base: 0x00001794, Load base: 0x00001794, Size: 0x00000074, Max: 0xffffffff, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
-    0x000016e0        -       0x000000e4   Zero   RW          121    .bss                main.o
-    0x000017c4        -       0x00000060   Zero   RW          249    .bss                c_p.l(libspace.o)
-    0x00001824   0x000016e0   0x0000000c   PAD
-    0x00001830        -       0x00000400   Zero   RW            2    HEAP                cm0dsasm.o
-    0x00001c30        -       0x00000400   Zero   RW            1    STACK               cm0dsasm.o
+    0x00001794   0x00001794   0x00000005   Data   RW           13    .data               edk_api.o
+    0x00001799   0x00001799   0x00000003   PAD
+    0x0000179c   0x0000179c   0x00000010   Data   RW           85    .data               retarget.o
+    0x000017ac   0x000017ac   0x0000005c   Data   RW          122    .data               main.o
+
+
+    Execution Region ER_ZI (Exec base: 0x00001808, Load base: 0x00001808, Size: 0x00000948, Max: 0xffffffff, ABSOLUTE)
+
+    Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
+
+    0x00001808        -       0x000000e4   Zero   RW          121    .bss                main.o
+    0x000018ec        -       0x00000060   Zero   RW          249    .bss                c_p.l(libspace.o)
+    0x0000194c   0x00001808   0x00000004   PAD
+    0x00001950        -       0x00000400   Zero   RW            2    HEAP                cm0dsasm.o
+    0x00001d50        -       0x00000400   Zero   RW            1    STACK               cm0dsasm.o
 
 
 ==============================================================================
@@ -667,14 +670,14 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
 
-       116         22        128          0       2048        836   cm0dsasm.o
-       920         28          0          5          0       9936   edk_api.o
-       136          6          0          0          0       1726   edk_driver.o
-      3184        972          0         92        228      11058   main.o
-        96          0          0         16          0       3874   retarget.o
+       124         22        128          0       2048        864   cm0dsasm.o
+       928         28          0          5          0       9912   edk_api.o
+       136          6          0          0          0       1710   edk_driver.o
+      3464        990          0         92        228      11313   main.o
+        96          0          0         16          0       3830   retarget.o
 
     ----------------------------------------------------------------------
-      4452       1028        144        116       2276      27430   Object Totals
+      4748       1046        144        116       2276      27629   Object Totals
          0          0         16          0          0          0   (incl. Generated)
          0          0          0          3          0          0   (incl. Padding)
 
@@ -712,8 +715,8 @@ Image component sizes
          2          0          0          0          0         68   use_no_semi.o
 
     ----------------------------------------------------------------------
-      1144         48          0          0        108       1120   Library Totals
-         6          0          0          0         12          0   (incl. Padding)
+      1144         48          0          0        100       1120   Library Totals
+         6          0          0          0          4          0   (incl. Padding)
 
     ----------------------------------------------------------------------
 
@@ -722,7 +725,7 @@ Image component sizes
       1138         48          0          0         96       1120   c_p.l
 
     ----------------------------------------------------------------------
-      1144         48          0          0        108       1120   Library Totals
+      1144         48          0          0        100       1120   Library Totals
 
     ----------------------------------------------------------------------
 
@@ -731,15 +734,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-      5596       1076        144        116       2384      27722   Grand Totals
-      5596       1076        144        116       2384      27722   ELF Image Totals
-      5596       1076        144        116          0          0   ROM Totals
+      5892       1094        144        116       2376      27921   Grand Totals
+      5892       1094        144        116       2376      27921   ELF Image Totals
+      5892       1094        144        116          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                 5740 (   5.61kB)
-    Total RW  Size (RW Data + ZI Data)              2500 (   2.44kB)
-    Total ROM Size (Code + RO Data + RW Data)       5856 (   5.72kB)
+    Total RO  Size (Code + RO Data)                 6036 (   5.89kB)
+    Total RW  Size (RW Data + ZI Data)              2492 (   2.43kB)
+    Total ROM Size (Code + RO Data + RW Data)       6152 (   6.01kB)
 
 ==============================================================================
 

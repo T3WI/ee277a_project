@@ -59,7 +59,11 @@ module AHBLITE_SYS(
     // 7 Segment display
     output wire    [6:0] seg,
     output wire          dp,
-    output wire    [3:0] an//,
+    output wire    [3:0] an,
+
+    output wire          M_CLK,
+    output wire          M_LRSEL,
+    input wire           M_DATA 
 
     
     // Debug
@@ -84,6 +88,7 @@ module AHBLITE_SYS(
     wire          hsel_gpio;
     wire          hsel_timer;
     wire          hsel_7seg;
+    wire          hsel_mic;
 
     // Slave read data
     wire   [31:0] hrdata_mem;
@@ -93,6 +98,7 @@ module AHBLITE_SYS(
     wire   [31:0] hrdata_gpio;
     wire   [31:0] hrdata_timer;
     wire   [31:0] hrdata_7seg;
+    wire   [31:0] hrdata_mic;
 
 
     // Slave hready
@@ -103,6 +109,7 @@ module AHBLITE_SYS(
     wire          hready_gpio;
     wire          hready_timer;
     wire          hready_7seg;
+    wire          hready_mic;
 
     // CM-DS Sideband signals
     wire          lockup;
@@ -117,14 +124,15 @@ module AHBLITE_SYS(
     	wire          uart_irq;
         wire          timer_irq;
         wire [7:0]    gpio_irq;
-        assign        irq = {22'b0, gpio_irq[7:0], uart_irq, timer_irq};
+        wire          mic_irq;      // NEED TO DO
+        assign        irq = {21'b0, mic_irq, gpio_irq[7:0], uart_irq, timer_irq};
         // assign        LED = gpio_irq | LED; // gpio test
     
 	  // Clock divider, divide the frequency by two, hence less time constraint 
     reg clk_div;
     always @(posedge CLK)
     begin
-        clk_div=~clk_div;
+        clk_div=~clk_div;       // 50 MHz CLK
     end
     BUFG BUFG_CLK (
         .O(fclk),
@@ -264,7 +272,7 @@ module AHBLITE_SYS(
       .HSEL_S3(hsel_timer),
       .HSEL_S4(hsel_gpio),
       .HSEL_S5(hsel_7seg),
-      .HSEL_S6(),
+      .HSEL_S6(hsel_mic),
       .HSEL_S7(),
       .HSEL_S8(),
       .HSEL_S9(),
@@ -285,7 +293,7 @@ module AHBLITE_SYS(
       .HRDATA_S3(hrdata_timer),
       .HRDATA_S4(hrdata_gpio),
       .HRDATA_S5(hrdata_7seg),
-      .HRDATA_S6(),
+      .HRDATA_S6(hrdata_mic),
       .HRDATA_S7(),
       .HRDATA_S8(),
       .HRDATA_S9(),
@@ -297,7 +305,7 @@ module AHBLITE_SYS(
       .HREADYOUT_S3(hready_timer),
       .HREADYOUT_S4(hready_gpio),
       .HREADYOUT_S5(hready_7seg),
-      .HREADYOUT_S6(1'b1),
+      .HREADYOUT_S6(hready_mic),
       .HREADYOUT_S7(1'b1),
       .HREADYOUT_S8(1'b1),
       .HREADYOUT_S9(1'b1),
@@ -411,6 +419,24 @@ module AHBLITE_SYS(
         .HRDATA(hrdata_gpio),
         .GPIOOUT(LED[7:0]),
         .gpio_irq(gpio_irq)
+    );
+
+    AHBMIC uAHBMIC(
+        .HCLK(fclk),
+        .HRESETn(hresetn),
+        .HADDR(haddrs),
+        .HTRANS(htranss),
+        .HWDATA(hwdatas),
+        .HWRITE(hwrites),
+        .HREADY(hreadys),
+        .HREADYOUT(hready_mic),               
+        .HRDATA(hrdata_mic),
+        .HSEL(hsel_mic),
+        .mic_irq(mic_irq),
+
+        .m_clk(M_CLK),
+        .m_data(M_DATA),
+        .m_lrsel(M_LRSEL)
     );
 
     

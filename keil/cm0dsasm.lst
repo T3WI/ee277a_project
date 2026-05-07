@@ -71,7 +71,7 @@ ARM Macro Assembler    Page 2
 
    50 00000060 00000000        DCD              GPIO1_Handler
    51 00000064 00000000        DCD              GPIO0_Handler
-   52 00000068 00000000        DCD              0
+   52 00000068 00000000        DCD              MIC_Handler
    53 0000006C 00000000        DCD              0
    54 00000070 00000000        DCD              0
    55 00000074 00000000        DCD              0
@@ -85,7 +85,7 @@ ARM Macro Assembler    Page 2
    62 00000000                 GLOBAL           Reset_Handler
    63 00000000                 ENTRY
    64 00000000                 IMPORT           __main
-   65 00000000 4817            LDR              R0, =__main
+   65 00000000 4819            LDR              R0, =__main
    66 00000002 4700            BX               R0          ;Branch to __main
    67 00000004                 ENDP
    68 00000004         
@@ -184,41 +184,51 @@ ARM Macro Assembler    Page 3
   145 0000004E F7FF FFFE       BL               GPIO0_ISR
   146 00000052 BD07            POP              {R0,R1,R2,PC}
   147 00000054                 ENDP
-  148 00000054                 ALIGN            4           ; Align to a word b
-                                                            oundary
-  149 00000054         
-  150 00000054         ; User Initial Stack & Heap
-  151 00000054                 IF               :DEF:__MICROLIB
-  156 00000054                 IMPORT           __use_two_region_memory
-  157 00000054                 EXPORT           __user_initial_stackheap
-  158 00000054         __user_initial_stackheap
-  159 00000054         
+  148 00000054         
+  149 00000054         MIC_Handler
+                               PROC
+  150 00000054                 EXPORT           MIC_Handler
+  151 00000054                 IMPORT           MIC_ISR
+  152 00000054 B507            PUSH             {R0,R1,R2,LR}
+  153 00000056 F7FF FFFE       BL               MIC_ISR
+  154 0000005A BD07            POP              {R0,R1,R2,PC}
+  155 0000005C                 ENDP
 
 
 
 ARM Macro Assembler    Page 4 
 
 
-  160 00000054 4803            LDR              R0, =  Heap_Mem
-  161 00000056 4904            LDR              R1, =(Stack_Mem + Stack_Size)
-  162 00000058 4A04            LDR              R2, = (Heap_Mem +  Heap_Size)
-  163 0000005A 4B05            LDR              R3, = Stack_Mem
-  164 0000005C 4770            BX               LR
-  165 0000005E         
-  166 0000005E 00 00           ALIGN
-  167 00000060         
-  168 00000060                 ENDIF
-  169 00000060         
-  170 00000060                 END
+  156 0000005C         
+  157 0000005C                 ALIGN            4           ; Align to a word b
+                                                            oundary
+  158 0000005C         
+  159 0000005C         ; User Initial Stack & Heap
+  160 0000005C                 IF               :DEF:__MICROLIB
+  165 0000005C                 IMPORT           __use_two_region_memory
+  166 0000005C                 EXPORT           __user_initial_stackheap
+  167 0000005C         __user_initial_stackheap
+  168 0000005C         
+  169 0000005C 4803            LDR              R0, =  Heap_Mem
+  170 0000005E 4904            LDR              R1, =(Stack_Mem + Stack_Size)
+  171 00000060 4A04            LDR              R2, = (Heap_Mem +  Heap_Size)
+  172 00000062 4B05            LDR              R3, = Stack_Mem
+  173 00000064 4770            BX               LR
+  174 00000066         
+  175 00000066 00 00           ALIGN
+  176 00000068         
+  177 00000068                 ENDIF
+  178 00000068         
+  179 00000068                 END
               00000000 
               00000000 
               00000400 
               00000400 
               00000000 
 Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M0 --apcs=interw
-ork --depend=.\cm0dsasm.d -o.\cm0dsasm.o -I.\RTE\_Target_1 -IC:\Users\minhk\App
-Data\Local\Arm\Packs\ARM\CMSIS\6.3.0\CMSIS\Core\Include -IC:\Users\minhk\AppDat
-a\Local\Arm\Packs\ARM\Cortex_DFP\1.1.0\Device\ARMCM0\Include -IC:\Users\minhk\A
+ork --depend=.\cm0dsasm.d -o.\cm0dsasm.o -I.\RTE\_Target_1 -IC:\Users\bobph\App
+Data\Local\Arm\Packs\ARM\CMSIS\6.3.0\CMSIS\Core\Include -IC:\Users\bobph\AppDat
+a\Local\Arm\Packs\ARM\Cortex_DFP\1.1.0\Device\ARMCM0\Include -IC:\Users\bobph\A
 ppData\Local\Arm\Packs\ARM\Cortex_DFP\1.1.0\Device\ARM\ARMCM0\Include --predefi
 ne="__EVAL SETA 1" --predefine="__UVISION_VERSION SETA 543" --predefine="ARMCM0
  SETA 1" --predefine="_RTE_ SETA 1" --list=.\cm0dsasm.lst Device\cm0dsasm.s
@@ -242,8 +252,8 @@ Symbol: Stack_Mem
    Definitions
       At line 4 in file Device\cm0dsasm.s
    Uses
-      At line 161 in file Device\cm0dsasm.s
-      At line 163 in file Device\cm0dsasm.s
+      At line 170 in file Device\cm0dsasm.s
+      At line 172 in file Device\cm0dsasm.s
 
 __initial_sp 00000400
 
@@ -274,8 +284,8 @@ Symbol: Heap_Mem
    Definitions
       At line 11 in file Device\cm0dsasm.s
    Uses
-      At line 160 in file Device\cm0dsasm.s
-      At line 162 in file Device\cm0dsasm.s
+      At line 169 in file Device\cm0dsasm.s
+      At line 171 in file Device\cm0dsasm.s
 
 __heap_base 00000000
 
@@ -409,6 +419,15 @@ Symbol: GPIO7_Handler
       At line 44 in file Device\cm0dsasm.s
       At line 86 in file Device\cm0dsasm.s
 
+MIC_Handler 00000054
+
+Symbol: MIC_Handler
+   Definitions
+      At line 149 in file Device\cm0dsasm.s
+   Uses
+      At line 52 in file Device\cm0dsasm.s
+      At line 150 in file Device\cm0dsasm.s
+
 Reset_Handler 00000000
 
 Symbol: Reset_Handler
@@ -436,15 +455,21 @@ Symbol: UART_Handler
       At line 43 in file Device\cm0dsasm.s
       At line 78 in file Device\cm0dsasm.s
 
-__user_initial_stackheap 00000054
+__user_initial_stackheap 0000005C
+
+
+
+
+ARM Macro Assembler    Page 3 Alphabetic symbol ordering
+Relocatable symbols
 
 Symbol: __user_initial_stackheap
    Definitions
-      At line 158 in file Device\cm0dsasm.s
+      At line 167 in file Device\cm0dsasm.s
    Uses
-      At line 157 in file Device\cm0dsasm.s
+      At line 166 in file Device\cm0dsasm.s
 Comment: __user_initial_stackheap used once
-13 symbols
+14 symbols
 
 
 
@@ -458,7 +483,7 @@ Symbol: Heap_Size
       At line 8 in file Device\cm0dsasm.s
    Uses
       At line 11 in file Device\cm0dsasm.s
-      At line 162 in file Device\cm0dsasm.s
+      At line 171 in file Device\cm0dsasm.s
 
 Stack_Size 00000400
 
@@ -467,7 +492,7 @@ Symbol: Stack_Size
       At line 1 in file Device\cm0dsasm.s
    Uses
       At line 4 in file Device\cm0dsasm.s
-      At line 161 in file Device\cm0dsasm.s
+      At line 170 in file Device\cm0dsasm.s
 
 2 symbols
 
@@ -546,6 +571,14 @@ External symbols
    Uses
       At line 89 in file Device\cm0dsasm.s
 Comment: GPIO7_ISR used once
+MIC_ISR 00000000
+
+Symbol: MIC_ISR
+   Definitions
+      At line 151 in file Device\cm0dsasm.s
+   Uses
+      At line 153 in file Device\cm0dsasm.s
+Comment: MIC_ISR used once
 Timer_ISR 00000000
 
 Symbol: Timer_ISR
@@ -574,9 +607,9 @@ __use_two_region_memory 00000000
 
 Symbol: __use_two_region_memory
    Definitions
-      At line 156 in file Device\cm0dsasm.s
+      At line 165 in file Device\cm0dsasm.s
    Uses
       None
 Comment: __use_two_region_memory unused
-12 symbols
-374 symbols in table
+13 symbols
+376 symbols in table

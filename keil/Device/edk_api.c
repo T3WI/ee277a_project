@@ -17,14 +17,15 @@
 void SoC_init(void){
 	NVIC_SetPriority (Timer_IRQn, 0x00);		//Set timer a higher priority
 	NVIC_SetPriority (UART_IRQn, 0x40);			//Set UART a lower priority
-	NVIC_SetPriority (GPIO7_IRQn, 0x80);	
-	NVIC_SetPriority (GPIO6_IRQn, 0x80);
-	NVIC_SetPriority (GPIO5_IRQn, 0x80);	
-	NVIC_SetPriority (GPIO4_IRQn, 0x80);
-	NVIC_SetPriority (GPIO3_IRQn, 0x80);	
-	NVIC_SetPriority (GPIO2_IRQn, 0x80);
-	NVIC_SetPriority (GPIO1_IRQn, 0x80);	
-	NVIC_SetPriority (GPIO0_IRQn, 0x80);
+	NVIC_SetPriority (MIC_IRQn, 0x80);			//Set UART a lower priority
+	NVIC_SetPriority (GPIO7_IRQn, 0xC0);	
+	NVIC_SetPriority (GPIO6_IRQn, 0xC0);
+	NVIC_SetPriority (GPIO5_IRQn, 0xC0);	
+	NVIC_SetPriority (GPIO4_IRQn, 0xC0);
+	NVIC_SetPriority (GPIO3_IRQn, 0xC0);	
+	NVIC_SetPriority (GPIO2_IRQn, 0xC0);
+	NVIC_SetPriority (GPIO1_IRQn, 0xC0);	
+	NVIC_SetPriority (GPIO0_IRQn, 0xC0);
 	seven_seg_write(0,0,0,0,0);								//Clean 7-segment display
 	clear_screen();	
 	SCB -> SCR = 1<1;												//Enable sleep-on-exit bit

@@ -154,7 +154,8 @@ void Game_Init(void)
 	printf("\nCannon_Score=%d\n",cannon_score);
 	printf("\nBoat_Score=%d\n",boat_score);
 	NVIC_EnableIRQ(Timer_IRQn);			//start timing
-	NVIC_EnableIRQ(UART_IRQn);	
+	NVIC_EnableIRQ(UART_IRQn);
+	NVIC_EnableIRQ(MIC_IRQn);	
 	NVIC_EnableIRQ(GPIO7_IRQn);
 	NVIC_EnableIRQ(GPIO6_IRQn);
 	NVIC_EnableIRQ(GPIO5_IRQn);
@@ -174,7 +175,8 @@ void Game_Close(void){
 	printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");		//flush screen
 	printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
 	NVIC_DisableIRQ(Timer_IRQn);			
-	NVIC_DisableIRQ(UART_IRQn);	
+	NVIC_DisableIRQ(UART_IRQn);
+	NVIC_DisableIRQ(MIC_IRQn);	
 	NVIC_DisableIRQ(GPIO7_IRQn);
 	NVIC_DisableIRQ(GPIO6_IRQn);
 	NVIC_DisableIRQ(GPIO5_IRQn);
@@ -185,11 +187,20 @@ void Game_Close(void){
 	NVIC_DisableIRQ(GPIO0_IRQn);	
 }
 
+void target_gen(void){
+		target.x= (char)random(left_boundary+boundary_thick+1,right_boundary-2);
+		target.x=target.x-target.x%2;
+		delay(111*target.x);
+		target.y= (char)random(top_boundary+boundary_thick+1,bottom_boundary-2);
+		target.y=target.y-target.y%2;
+		target.reach=0;	
+}
 	
 int GameOver(void){
 	char key;
 	
 	NVIC_DisableIRQ(UART_IRQn);
+	NVIC_DisableIRQ(MIC_IRQn);
 	NVIC_DisableIRQ(Timer_IRQn);
 	NVIC_DisableIRQ(GPIO7_IRQn);
 	NVIC_DisableIRQ(GPIO6_IRQn);
@@ -269,6 +280,13 @@ void GPIO0_ISR()
 	//printf("ISR0 WORK\n");
 }
 
+void MIC_ISR()
+{
+	target_gen();
+	rectangle(target.x,target.y,target.x+2,target.y+2,GREEN);
+	printf("Coin Spawned!\n");
+}
+
 
 //---------------------------------------------
 // UART ISR -- used to input commands
@@ -304,6 +322,16 @@ void UART_ISR(void)
 			NVIC_EnableIRQ(Timer_IRQn);
 		}
 	}
+	// detect if boat reaches target
+	if (target.x >= player.x &&                   // Right of left edge
+        target.x <= (player.x + player.width) &&       // Left of right edge
+        target.y >= player.y &&                   // Below top edge
+        target.y <= (player.y + player.height)) {      // Above bottom edge
+				rectangle(target.x,target.y,target.x+2,target.y+2,BLACK);
+				target.reach=1;
+				boat_score +=2;
+				cannon_score -=2;
+    	}
 
 	// this keeps the player inside the borders 
 	if(player.x < left_boundary + boundary_thick)

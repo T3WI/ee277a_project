@@ -49,7 +49,7 @@ __Vectors		    	DCD		0x00003FFC
         				DCD		GPIO2_Handler	
         				DCD		GPIO1_Handler	
         				DCD		GPIO0_Handler	
-        				DCD		0	
+        				DCD		MIC_Handler
         				DCD		0
         				DCD		0
         				DCD		0
@@ -145,6 +145,15 @@ GPIO0_Handler   PROC
 				BL GPIO0_ISR
                 POP     {R0,R1,R2,PC}
                 ENDP
+					
+MIC_Handler   PROC
+                EXPORT MIC_Handler
+				IMPORT MIC_ISR
+                PUSH    {R0,R1,R2,LR}
+				BL MIC_ISR
+                POP     {R0,R1,R2,PC}
+                ENDP
+					
 				ALIGN 		4					 ; Align to a word boundary
 
 ; User Initial Stack & Heap
