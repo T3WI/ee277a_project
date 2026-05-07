@@ -71,5 +71,5 @@ extern unsigned char UartGetc(void);									//Retarget functions
 // API global variables
 //--------------------------------------------------------
  
-static char dig1,dig2,dig3,dig4;
+static char dig1,dig2,dig3,dig4,dig5;
 

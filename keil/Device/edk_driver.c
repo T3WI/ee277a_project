@@ -26,8 +26,9 @@ void VGA_plot_pixel (int x, int y, int col){
 // 7 segment display driver function
 //---------------------------------------------
 
-void seven_seg_write(char dig1, char dig2,char dig3,char dig4){
+void seven_seg_write(char dig5, char dig1, char dig2,char dig3,char dig4){ //ADDED another argument
 	
+	SEVSEG->DIGIT5=dig5;		//ADDED
 	SEVSEG->DIGIT1=dig4;
 	SEVSEG->DIGIT2=dig3;
 	SEVSEG->DIGIT3=dig2;

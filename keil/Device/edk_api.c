@@ -25,7 +25,7 @@ void SoC_init(void){
 	NVIC_SetPriority (GPIO2_IRQn, 0x80);
 	NVIC_SetPriority (GPIO1_IRQn, 0x80);	
 	NVIC_SetPriority (GPIO0_IRQn, 0x80);
-	seven_seg_write(0,0,0,0);								//Clean 7-segment display
+	seven_seg_write(0,0,0,0,0);								//Clean 7-segment display
 	clear_screen();	
 	SCB -> SCR = 1<1;												//Enable sleep-on-exit bit
 }
@@ -50,8 +50,9 @@ void Display_Int_Times(void){
 			}
 		}
 	}
-	
-	seven_seg_write( dig1, dig2, dig3, dig4);
+
+		
+	seven_seg_write(dig5, dig1, dig2, dig3, dig4);
 
 }
 

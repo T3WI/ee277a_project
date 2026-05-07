@@ -170,6 +170,7 @@ void Game_Close(void){
 	clear_screen();
 	cannon_score=0;
 	boat_score=0;
+	ceiling_thick = 1;
 	printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");		//flush screen
 	printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
 	NVIC_DisableIRQ(Timer_IRQn);			
@@ -350,10 +351,10 @@ void Timer_ISR(void)
             seconds_elapsed++;
             
             if(seconds_elapsed % 5 == 0) {	//Every 5 seconds, boat score and speed is increased
-                boat_score++;
-								cannon_score--;
-								ceiling_thick += 3;
-								rectangle(left_boundary,top_boundary,right_boundary,top_boundary+ceiling_thick,RED);//ADDED
+                boat_score++;					//increment boat score by 1
+								cannon_score--;				//decrease cannon score by 1
+								dig5++;								//increment digit 5 of 7-segment display
+							  rectangle(left_boundary,top_boundary,right_boundary,top_boundary+boat_score*3,RED);//Make ceiling go down and reset based off of the boat score
                 if(boat_score < 10) {
                     gamespeed = speed_table[boat_score];
                     timer_init((Timer_Load_Value_For_One_Sec / gamespeed), Timer_Prescaler, 1);
@@ -428,10 +429,10 @@ void Timer_ISR(void)
 	// Cannonball fire
 			
 	
-	// Mark that snake has moved
+	// Mark that player has moved
 	player_has_moved=1;
 
-	//Display the total distance that the snake has moved
+	//Display the total distance that the player has moved
 	Display_Int_Times();
 		
 	//Clear timer irq

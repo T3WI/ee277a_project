@@ -63,7 +63,8 @@ typedef struct
   volatile  unsigned int  DIGIT1;        
   volatile  unsigned int  DIGIT2;           
   volatile  unsigned int  DIGIT3;          
-  volatile  unsigned int  DIGIT4;        
+  volatile  unsigned int  DIGIT4;
+	volatile	unsigned int 	DIGIT5; //ADDED
 } SEVENSEG_TypeDef;
 
 
@@ -101,7 +102,7 @@ typedef struct
 
 void VGA_plot_pixel (int x, int y, int col);				//Plot a pixel to the image buffer
 
-void seven_seg_write(char dig1, char dig2,char dig3,char dig4);		//Write to 7-segment display
+void seven_seg_write(char dig5, char dig1, char dig2,char dig3,char dig4);		//Write to 7-segment display (MODIFIED)
  
 void timer_init(int load_value, int prescale, int mode);			//Initialize the timer
 	
