@@ -670,14 +670,14 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
 
-       124         22        128          0       2048        864   cm0dsasm.o
-       928         28          0          5          0       9912   edk_api.o
-       136          6          0          0          0       1710   edk_driver.o
-      3464        990          0         92        228      11313   main.o
-        96          0          0         16          0       3830   retarget.o
+       124         22        128          0       2048        872   cm0dsasm.o
+       928         28          0          5          0       9940   edk_api.o
+       136          6          0          0          0       1722   edk_driver.o
+      3464        990          0         92        228      11365   main.o
+        96          0          0         16          0       3862   retarget.o
 
     ----------------------------------------------------------------------
-      4748       1046        144        116       2276      27629   Object Totals
+      4748       1046        144        116       2276      27761   Object Totals
          0          0         16          0          0          0   (incl. Generated)
          0          0          0          3          0          0   (incl. Padding)
 
@@ -734,8 +734,8 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-      5892       1094        144        116       2376      27921   Grand Totals
-      5892       1094        144        116       2376      27921   ELF Image Totals
+      5892       1094        144        116       2376      28053   Grand Totals
+      5892       1094        144        116       2376      28053   ELF Image Totals
       5892       1094        144        116          0          0   ROM Totals
 
 ==============================================================================

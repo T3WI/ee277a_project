@@ -137,4 +137,5 @@ module AHBMIC(
     end
     
     assign mic_irq = ~last_trigger_out&trigger_out;
+    assign HREADYOUT = 1'b1;
 endmodule
